@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café com livros | Cadastro</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <ul class="navbar">
+                <li>
+                    <a href="home.html">Inicio</a>
+                </li>
+                <li>
+                    <a href="minha historia*">Minha história</a>
+                </li>
+                <li>|</li>
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+                <li class="agora">
+                    <a href="#">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="login">
+        <div class="container">
+            <div class="card-login">
+                <span>Cadastre-se</span>
+                <div class="formulario">
+                    <div class="campo">
+                        <input id="input_nome" type="text" placeholder="Nome">
+                    </div>
+                    <div class="campo">
+                        <input id="input_nasc" type="date" placeholder="Data de nascimento">
+                    </div>
+                    <div class="campo">
+                        <input id="input_email" type="text" placeholder="E-mail">
+                    </div>
+                    <div class="campo">
+                        <input id="input_senha" type="text" placeholder="Senha">
+                    </div>
+                    <div class="campo">
+                        <input id="input_confirmarSenha" type="text" placeholder="Confirmar senha">
+                    </div>
+
+                    <div class="input_container">
+                        <select id="select_genero">
+                            <option value="#">Selecione seu gênero literário favorito</option>
+                            <option value="1">Romance</option>
+                            <option value="2">Fantasia</option>
+                            <option value="3">Ficção científica</option>
+                            <option value="4">Suspense</option>
+                            <option value="5">Poesia</option>
+                            <option value="6">Ficção histórica</option>
+                            <option value="7">Literatura clássica</option>
+                            <option value="8">Terror</option>
+                            <option value="9">Religião</option>
+                        </select>
+                    </div>
+                    <button id="buton-cadastrar" onclick="cadastrar()"> Cadastrar </button>
+                    <br>
+                    <p id="cadastro">Já possui uma conta?
+                        <a href="login.html">Faça Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function cadastrar() {
+        var nome = input_nome.value;
+        var email = input_email.value;
+        var senha = input_senha.value;
+        var confSenha = input_confirmarSenha.value;
+        var generoFav = select_genero.value;
+
+        var termina_com = email.endsWith('.com');
+        var termina_br = email.endsWith('.br');
+        var possui_arroba = email.includes('@');
+
+        if (nome == '' || email == '' || senha == '' || confSenha == '' || generoFav == '#') {
+            alert('Preencher todos os campos para prosseguir')
+        }
+        else if (nome.length < 3) {
+            alert('O nome precisa ter ao menos 3 caracteres')
+        }
+        else if (termina_br == false && termina_com == false || possui_arroba == false) {
+            alert('Favor informar um e-mail válido')
+        }
+        else if (senha.length < 6) {
+            alert('A senha deve haver ao menos 6 caracteres')
+        }
+        else {
+            alert('duda')
+        }
+    }
+</script>

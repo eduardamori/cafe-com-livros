@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café com livros | Login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <ul class="navbar">
+                <li>
+                    <a href="home.html">Inicio</a>
+                </li>
+                <li>
+                    <a href="minha historia*">Minha história</a>
+                </li>
+                <li>|</li>
+                <li class="agora">
+                    <a href="#">Login</a>
+                </li>
+                <li>
+                    <a href="cadastro.html">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="login">
+        <div class="container">
+            <div class="card-login">
+                <span>Faça seu login</span>
+                <div class="formulario">
+                    <div class="campo">
+                        <input id="input_email" type="text" placeholder="Login">
+                    </div>
+                    <div class="campo">
+                        <input id="input_senha" type="text" placeholder="Senha">
+                    </div>
+                    <button id="botao" onclick="entrar()">Entrar</button>
+                    <p id="cadastro">Não possui uma conta?
+                        <a href="cadastro.html">Fazer cadastro</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function entrar() {
+        var email = input_email.value
+        var senha = input_senha.value
+
+        if(email == '' || senha == '') {
+            alert('Preencha todos os campos para prosseguir')
+        }
+
+    }
+</script>

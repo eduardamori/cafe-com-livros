@@ -1,0 +1,125 @@
+* {
+    margin: '';
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    background: linear-gradient(rgba(255, 253, 253, 0.5), rgba(245, 244, 244, 0.5)), url(https://bulebar.com.br/wp-content/uploads/2019/03/Bulebar_-livros-para-quem-%C3%A9-apaixonado-por-caf%C3%A9-02.png);
+    background-size: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+.header {
+    width: 100%;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    padding: 5px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #583b2cdb;
+}
+
+.logo {
+    width: 50px;
+}
+
+.header ul a{
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+    text-decoration: none;
+    padding: 10px 39px;
+    border-radius: 20px;
+    background-color: #deb887cc;
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    transition: color 0.2;
+}
+
+.header ul a:hover {
+    color: #fbfafa;
+}
+
+.navbar-autorizacao a{
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+    text-decoration: none;
+    padding: 10px 39px;
+    border-radius: 20px;
+    background-color: #deb887cc;
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    transition: color 0.2;
+}
+
+.navbar-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-login:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-cadastro:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-cadastro:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.texto .container {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.container{
+    padding-top: 163px;
+    padding-bottom: 163px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #5F4343;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+
+.footer {
+    padding-top: 10px;
+    background-color: #583b2c;
+    color: #fff;
+    /* padding: 10px 0; */
+}
+
+.footer .footer-copyrigth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}

@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    color: #ffffff;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://bulebar.com.br/wp-content/uploads/2019/03/Bulebar_-livros-para-quem-%C3%A9-apaixonado-por-caf%C3%A9-02.png);
+    background-size: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-image{
+    height: 100%;
+    position: relative;
+}
+
+.close-form{
+    height: 6%;
+    margin: 18px 0 0 18px;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#input_nasc {
+    color: #7b7979;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9d9d9db;
+    width: 480px;
+    border-radius: 33px;
+    padding: 50px 33px;
+}
+
+.column span{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 33px;
+    color: #000000;
+}
+
+.column .form{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.input_container input{
+    font-size: 1rem;
+    color: #000000;
+    padding: 12px 12px 12px 30px;
+    margin: 13px 0;
+    /* quando clicar na input aparecer a borda */
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    background-color: #D0B99A;
+    width: 100%;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}  
+
+.input_container select{
+    font-size: 1rem;
+    padding: 12px 12px 12px 45px;
+    margin: 13px 0;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    background-color: #D3D3D3;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+} 
+
+#buton-cadastrar {
+    background-color: #5f4829;
+    color: white;
+    border: none;
+    border-radius: 23px;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.4s, transform 0.4s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.596);
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+}
+
+#buton-cadastrar:hover {
+    background-color: #cc5523;
+    transform: scale(1.05);
+}
+
+#buton-cadastrar:active {
+    background-color: #ce835ae7;
+    transform: scale(1);
+}
+
+.login {
+    /* margin: 4px 0 8px 0; */
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.login a {
+    color: var(--first-color);
+    transition: 0.2s;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-decoration: none;
+}
+
+.login a:hover {
+    color: #5c2e0e;
+}
+
+.header .container {
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    display: flex;
+}

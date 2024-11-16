@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar {
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    padding: 15px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #583b2cdb;
+    position: fixed;
+}
+
+.logo {
+    width: 50px;
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+    text-decoration: none;
+    padding: 10px 39px;
+    border-radius: 20px;
+    background-color: #deb887cc;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    transition: color 0.2;
+}
+
+.navbar ul li a:hover {
+    color: #fbfafa;
+}
+
+.navbar-autorizacao {
+    height: 100%;
+    width: 23%;
+    margin: auto 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-autorizacao a {
+    position: relative;
+    font-size: 17px;
+    text-decoration: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* padding: 10px 39px; */
+    padding: 10px 39px;
+    display: inline-block;
+    border-radius: 20px;
+    transition: all .2s;
+    border: none;
+    font-weight: 500;
+    color: black;
+    background-color: #DEB887;
+}
+
+.navbar-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-login:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-cadastro:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-cadastro:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #060606;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    word-wrap: break-word;
+}
+
+h2,
+h3 {
+    color: #000;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section.module p {
+    margin-bottom: 40px;
+}
+
+section.module h3 {
+    margin-bottom: 40px;
+    font-size: 27px;
+}
+
+section.module.content {
+    padding: 30px 0;
+    background-color: #eae7de;
+}
+
+section.module.parallax {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+section.module.parallax::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 8;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0)0, rgba(0, 0, 0, 0)10%, #000 110%);
+}
+
+section.module.parallax-1 {
+    background-image: url(https://blog-leiturinha-novo.s3.us-east-1.amazonaws.com/production/uploads/2020/06/indice-de-leitura-no-brasil2.jpg);
+}
+
+section.module.parallax-2 {
+    background-image: url(https://www.bombombooks.com.br/cdn/shop/articles/Post-15_05_19-Featured-1150x647.jpg?v=1568665699)
+}
+
+section.module.parallax-3 {
+    background-image: url(https://www.taglivros.com/blog/wp-content/uploads/2018/06/x_1-foto.png
+)
+}
+
+section.module.parallax h2 {
+    color: #fbf1f1;
+    text-align: center;
+    font-size: 70px;
+    z-index: 50;
+    text-transform: uppercase;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.footer {
+    background-color: #583b2cdb;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
