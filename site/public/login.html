@@ -58,11 +58,36 @@
         var email = input_email.value
         var senha = input_senha.value
 
-        if(email == '' || senha == '') {
+        if (email == '' || senha == '') {
             alert('Preencha todos os campos para prosseguir')
         } else {
-            
-        }
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    emailServer: email,
+                    senhaServer: senha
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
 
+                    if (resposta.ok) {
+                        alert('Login autenticado com sucesso! Redirecionando para tela da dashboard...');
+
+                        setTimeout(() => {
+                            window.location = "home.html";
+                        }, "2000");
+                    }
+                    else {
+                        throw "Houve um erro ao tentar realizar o login!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+        }
     }
 </script>

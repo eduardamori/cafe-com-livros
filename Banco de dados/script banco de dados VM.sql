@@ -22,12 +22,12 @@ numPaginas int
 CREATE TABLE livro_usuario (
 fkUsuario int,
 fkLivro int,
-primary key (fkCadastro, fkLivro),
+primary key (fkUsuario, fkLivro),
 dtInicio date,
 dtTermino date,
 estrelas int,
 resenha varchar(500),
-constraint fkULivrosUsuario foreign key(fkUsuario) references cadastro(idUsuario),
+constraint fkULivrosUsuario foreign key(fkUsuario) references usuario(idUsuario),
 constraint fkLUsuarioLivros foreign key(fkLivro) references livros(idLivro)
 );
 
