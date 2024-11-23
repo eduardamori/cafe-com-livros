@@ -2,8 +2,8 @@ CREATE DATABASE cafe_com_livros;
 
 USE cafe_com_livros;
 
-CREATE TABLE cadastro (
-idCadastro int primary key auto_increment,
+CREATE TABLE usuario (
+idUsuario int primary key auto_increment,
 nome varchar(45),
 email varchar(45),
 dtNasc DATE,
@@ -20,15 +20,17 @@ numPaginas int
 ) auto_increment = 1000;
 
 CREATE TABLE livro_usuario (
-fkCadastro int,
+fkUsuario int,
 fkLivro int,
-primary key (fkCadastro, fkLivro),
+primary key (fkUsuario, fkLivro),
 dtInicio date,
 dtTermino date,
 estrelas int,
 resenha varchar(500),
-constraint fkLUsuarioCadastro foreign key(fkCadastro) references cadastro(idCadastro),
+constraint fkULivrosUsuario foreign key(fkUsuario) references usuario(idUsuario),
 constraint fkLUsuarioLivros foreign key(fkLivro) references livros(idLivro)
 );
 
-ALTER TABLE cadastro ADD CONSTRAINT chkGenero CHECK (generoFav in ('romance', 'fantasia', 'ficçao científica', 'suspense', 'poesia', 'ficção histórica', 'literatura clássica', 'terror', 'religião'));
+ALTER TABLE usuario ADD CONSTRAINT chkGenero CHECK (generoFav in ('romance', 'fantasia', 'ficçao científica', 'suspense', 'poesia', 'ficção histórica', 'literatura clássica', 'terror', 'religião'));
+
+SELECT * FROM usuario;
