@@ -1,21 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    overflow: auto;
+    display: fixed;
 }
 
 .sidebar {
     z-index: 100;
-    position: fixed;
+    position: flex;
     width: 100%;
+    /* background-color: red; */
     background-color: #d3d3d3;
     padding: 5px, 6%;
     align-items: center;
@@ -23,7 +21,7 @@ body {
     justify-content: space-between;
 }
 
-.sidebar p{
+.sidebar p {
     list-style: none;
     display: inline-block;
     margin-left: 20px;
@@ -38,7 +36,7 @@ body {
     transition: color 0.2;
 }
 
-.sidebar a{
+.sidebar a {
     list-style: none;
     display: inline-block;
     margin-left: 20px;
@@ -55,68 +53,68 @@ body {
 }
 
 .content {
-    /* margin-left: 260px; */
     padding: 10px;
-    display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 90px;
+    /* background-color: #28a745; */
     justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .charts {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     width: 100%;
-    max-width: 1000px; 
-    margin-top: 20px;
-    padding-bottom: 3%; 
-}
-
-.chart-container {
-    max-width: 1000px;
-    margin-bottom: 20px;
-    border: 2px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    position: relative;
-    text-align: center;
-    height: 500px;
-    width: 750px;
+    margin-top: 2dvh;
+    margin-bottom: 2dvh;
+    background-color: brown;
 }
 
 .chart-box {
-    width: 48%; 
+    /* width: 48%;  */
     border: 2px solid #ccc;
     padding: 10px;
     border-radius: 5px;
     position: relative;
-    height: 350px; 
+    height: 350px;
     margin: 0 1%;
     flex-direction: column;
+    /* max-height: 30px; */
 }
 
-.pie-chart{
+.duda-chart {
+    display: flex;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    margin: 0 5px;
+    min-height: 100px;
+    /* max-height: 350px; */
+}
+
+.pie-chart {
     display: flex;
     width: fit-content;
     height: fit-content;
 }
 
-.bar-chart{
+.bar-chart {
     display: flex;
     height: fit-content;
-    width: 700px;
+    width: 900px;
 }
 
 .chart-title {
     background-color: rgba(60, 179, 113, 1);
     color: white;
     text-align: center;
-    padding: 5px;
+    padding: 0 10px;
     width: fit-content;
     margin: 0 auto;
     border-radius: 5px;
-    height: fit-content;            
+    height: fit-content;
 }
 
 .button {
@@ -134,8 +132,8 @@ body {
 .toggle-button {
     display: inline-block;
     margin-top: 10px;
-    padding: 5px 10px; 
-    font-size: 0.9em; 
+    padding: 5px 10px;
+    font-size: 0.9em;
     font-family: Arial, sans-serif;
     color: white;
     text-align: center;
@@ -148,133 +146,98 @@ body {
 
 }
 
-.toggle-button.mostrar {
-    background-color: #dc3545;
-}
-
-.toggle-button.remover {
-    background-color: #28a745;
-}
-
-.images{
-    display: flex;
-    flex-direction: row;
-}
-
-.profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    margin-left: 10%;
-}
-
-/* .institucional-pic{
-    width: 50px;
-    height: 50px;
-} */
-
 .kpi-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 900px;
-    margin-bottom: 20px;
 }
 
 .kpi {
     text-align: center;
     padding: 8px;
     border: 2px solid #ccc;
-    border-radius: 5px;
-    width: fit-content;
-    background-color: rgba(60, 179, 113, 0.1);
-    font-size: 1.5em;
+    border-radius: 10px;
+    background-color: rgba(179, 141, 60, 0.382);
     margin: 0 5px;
-    font-weight: normal;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    /* height: 70%; */
+    font-size: 22px;
+    max-width: 250px;
+    min-width: 258px;
+    max-height: 200px;
+    min-height: 250px;
 }
 
 .kpi h3 {
     margin: 0;
-    width: fit-content;
     justify-content: space-evenly;
-    height: fit-content;
-    font-size: 22px;
+    font-size: 0.9em;
+    min-height: 30px;
 }
 
-.txt-kpi{
-    font-size: 2em;
+.kpi p {
+    /* background-color: red; */
+    font-size: 0.9em;
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: fit-content;
-    margin-top: 8px;
-    width: max-content;
-    margin-left: 90px;
-
+    height: 100%;
 }
 
-.alerts {
-    color: red;
-    font-weight: bold;
-    font-size: 2em;
-    margin-bottom: 5px;
-    margin-top: 10px;
+.kpi .favoritos {
+    text-align: left;
 }
 
-.alerts-daily {
-    color: orange;
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 7px;
-    font-size: 2em;
+.kpi .kpi_qtd {
+    font-size: 3em;
 }
 
-.alerts-moderate {
-    color: orange;
-    font-weight: bold;
-    font-size: 2em;
-    margin-top: 10px;
+.charts #livrosPorGenero_chart_box {
+    /* margin-top: 10px; */
+    /* background-color: darkslateblue; */
 }
 
-h1 {
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 400;
-    font-size: 3em; 
-    text-align: center;
-    margin-bottom: 10px;
-    margin-top: 6px;
+.charts #livrosPorAutores_chart_box {
+    /* margin-top: 10px; */
+    /* background-color: darkslateblue; */
+}
+
+.charts #livrosLidosMes_chart_box {
+    /* margin-top: 10px; */
+    /* background-color: darkslateblue; */
+}
+
+.charts #paginasLidasMes_chart_box {
+    /* margin-top: 10px; */
+    /* background-color: darkslateblue; */
+}
+
+.charts #livros_chart_box {
+    background-color: red;
+    max-width: 48.5dvh;
+    max-height: 100%;
 }
 
 .tech-title {
-    font-family: 'Montserrat', sans-serif; 
-    font-size: 1.2em; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
     font-weight: 300;
     display: block;
-}
-
-h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 5em;
     text-align: center;
     animation: shrinkTitle 2s forwards;
 }
 
 @keyframes shrinkTitle {
     0% {
-        font-size: 5em; 
+        font-size: 3.5em;
     }
+
     100% {
-        font-size: 3em;
+        font-size: 2.5em;
     }
 }
 
-.bar-alert{
+.bar-alert {
     justify-self: center;
     width: 850px;
     height: fit-content;
@@ -285,7 +248,7 @@ h1 {
     align-items: center;
 }
 
-#alertTitle{
+#alertTitle {
     background-color: red;
     font-size: 20px;
 }
