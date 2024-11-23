@@ -44,10 +44,10 @@
                         <input id="input_email" type="text" placeholder="E-mail">
                     </div>
                     <div class="campo">
-                        <input id="input_senha" type="text" placeholder="Senha">
+                        <input id="input_senha" type="password" placeholder="Senha">
                     </div>
                     <div class="campo">
-                        <input id="input_confirmarSenha" type="text" placeholder="Confirmar senha">
+                        <input id="input_confirmarSenha" type="pas" placeholder="Confirmar senha">
                     </div>
 
                     <div class="input_container">
@@ -86,6 +86,10 @@
         var senha = input_senha.value;
         var confSenha = input_confirmarSenha.value;
         var generoFav = select_genero.value;
+        var possui_numero = /\d/.test(senha);
+        var possui_letra_maiuscula = /[A-Z]/.test(senha);
+        var possui_letra_minuscula = /[a-z]/.test(senha);
+        var possui_caracter_especial = /[!@#$%¨&*()]/.test(senha);
 
         var termina_com = email.endsWith('.com');
         var termina_br = email.endsWith('.br');
@@ -100,8 +104,11 @@
         else if (termina_br == false && termina_com == false || possui_arroba == false) {
             alert('Favor informar um e-mail válido')
         }
-        else if (senha.length < 6) {
-            alert('A senha deve haver ao menos 6 caracteres')
+        else if (senha.length < 6 || !possui_numero || !possui_letra_maiuscula || !possui_letra_minuscula || !possui_caracter_especial) {
+            alert('A senha deve haver ao menos 6 caracteres, um caractere maiúsculo, um minúsculo, um número e um caracter especial')
+        }
+        else if (senha != confSenha) {
+            alert('As senhas não correspondem')
         }
         else {
             fetch("/usuarios/cadastrar", {
