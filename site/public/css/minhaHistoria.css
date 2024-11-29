@@ -13,24 +13,14 @@ body {
 }
 
 html, body {
-    background: linear-gradient(rgba(255, 253, 253, 0.5), rgba(245, 244, 244, 0.5)), url(https://bulebar.com.br/wp-content/uploads/2019/03/Bulebar_-livros-para-quem-%C3%A9-apaixonado-por-caf%C3%A9-02.png);
     background-size: 100%;
     height: 100%;
     width: 100%;
+    background-color: #ddd;
 }
 
-p {
-    font-size: 28px;
-    color: black;
-    /* max-width: 900px; */
-}
-
-.container span {
-    font-size: 20px;
-    color: black;
-    font-style: italic;
-    max-width: 600px;
-    /* max-height: 50px; */
+.agora {
+    font-weight: 800;
 }
 
 .header {
@@ -105,15 +95,7 @@ p {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.texto {
-    justify-content: center;
-    align-items: center;
-    /* height: 100%; */
-    margin-top: 65px;
-}
-
 .container{
-    /* padding-top: 163px; */
     width: 100%;
     height: 100%;
     display: flex;
@@ -121,14 +103,84 @@ p {
     justify-content: space-evenly;
     color: #5F4343;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 50px;
+    font-size: 30px;
+}
+
+.legenda {
+    margin-top: 310px;
+    margin-left: 10px;
+}
+
+.body-section1 {
+    /* height: 100%;
+    width: 100%; */
+    display: flex;
+    /* align-items: center; */
+    margin-top: 2%;
+    /* justify-content: space-around; */
+    /* opacity: 0;  */
+    /* transition: opacity 0.5s ease; */
+    background-color: #6f4d3cdc;
+    padding: 20px;
+    min-height: 350px;
+    max-height: 350px;
+    align-items: center;
+}
+
+.body-section1 span {
+    /* margin-left: 40px; */
+    font-size: 27px;
+    padding: 60px;
+}
+
+.body-section1 p {
+    /* margin-left: 40px; */
+    font-size: 23px;
+    font-weight: 30px;
+}
+
+.body-section2 {
+    display: flex;
+    margin-top: 2%;
+    background-color: #b8a195dc;
+    padding: 20px;
+    min-height: 350px;
+    max-height: 350px;
+}
+
+.body-section2 span {
+    margin-left: 40px;
+    font-size: 23px;
+    padding: 60px;
+
+}
+
+
+.body-section3 {
+    display: flex;
+    margin-top: 2%;
+    background-color: #6f4d3cdc;
+    padding: 20px;
+    min-height: 350px;
+    max-height: 350px;
+}
+
+.body-section3 span {
+    margin-left: 40px;
+    font-size: 23px;
+    padding: 60px;
+
+}
+
+img {
+    margin: 10px;
 }
 
 .footer {
     padding-top: 10px;
     background-color: #583b2c;
     color: #fff;
-    margin-top: 3.5%;
+    margin-top: 2%;
     /* padding: 10px 0; */
 }
 
@@ -138,3 +190,12 @@ p {
     align-items: center;
     text-align: center;
 }
+
+figure {
+    width: 70%;
+    text-align: center;
+    font-style: italic;
+    font-size: smaller;
+    margin: 10px;
+    padding: 10px;
+  }

@@ -133,7 +133,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // porque sera executado apos a pagina html ser totalmente exibida, evitando conflitos.
 });
 
-
 // const sensorStatusData = {
 //     labels: ['Lidos', 'Não lidos', 'Lendo'],
 //     datasets: [{
