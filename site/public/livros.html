@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onload="listarLivros()">
 
     <div class="sidebar">
         <img src="https://images.vexels.com/media/users/3/329809/isolated/preview/18b2b6c1ba490d273259b8d0f8811dcb-cup-of-coffee-with-a-heart-on-it-barista.png"
@@ -52,7 +52,7 @@
                     <div class="input_container">
                         Gênero:
                         <select id="select_genero">
-                            <option value="#">Selecione seu gênero literário favorito</option>
+                            <option value="#">Selecione o gênero do livro</option>
                             <option value="romance">Romance</option>
                             <option value="fantasia">Fantasia</option>
                             <option value="ficcao científica">Ficção científica</option>
@@ -69,9 +69,9 @@
                         Tipo de leitura
                         <select id="select_tipoLeitura" onchange="ler()">
                             <option value="#">Selecione um status de leitura</option>
-                            <option>Lido</option>
-                            <option>Lendo</option>
-                            <option>Não lido</option>
+                            <option value="Lido">Lido</option>
+                            <option value="Lendo">Lendo</option>
+                            <option value="Nao lido">Não lido</option>
                         </select>
                     </div>
                     <div id="lido" class="first card" style="display: none;">
@@ -81,27 +81,31 @@
                         </div>
                         <div class="card_btn">
                             <div class="star-rating">
-                                <input type="radio" name="rating1" id="rating1-5" value="5"><label
-                                    for="rating1-5">★</label>
-                                <input type="radio" name="rating1" id="rating1-4" value="4"><label
-                                    for="rating1-4">★</label>
-                                <input type="radio" name="rating1" id="rating1-3" value="3"><label
-                                    for="rating1-3">★</label>
-                                <input type="radio" name="rating1" id="rating1-2" value="2"><label
-                                    for="rating1-2">★</label>
-                                <input type="radio" name="rating1" id="rating1-1" value="1"><label
-                                    for="rating1-1">★</label>
+                                <input type="radio" name="rating1" id="rating1-5" value="5"
+                                    onclick="setarAvaliacao(5)"><label for="rating1-5">★</label>
+                                <input type="radio" name="rating1" id="rating1-4" value="4"
+                                    onclick="setarAvaliacao(4)"><label for="rating1-4">★</label>
+                                <input type="radio" name="rating1" id="rating1-3" value="3"
+                                    onclick="setarAvaliacao(3)"><label for="rating1-3">★</label>
+                                <input type="radio" name="rating1" id="rating1-2" value="2"
+                                    onclick="setarAvaliacao(2)"><label for="rating1-2">★</label>
+                                <input type="radio" name="rating1" id="rating1-1" value="1"
+                                    onclick="setarAvaliacao(1)"><label for="rating1-1">★</label>
                             </div>
                         </div>
                         <div>
                             <p>Data de início da leitura</p>
                             <div>
-                                <input class="data" id="dtInicio" type="date">
+                                <input class="data" id="input_dtInicio" type="date">
                             </div>
                             <p>Data de término da leitura</p>
                             <div>
-                                <input class="data" id="dtTermino" type="date">
+                                <input class="data" id="input_dtTermino" type="date">
                             </div>
+                        </div>
+                        <div class="campo">
+                            Resenha:
+                            <input id="input_resenha" type="text" placeholder="Resenha sobre o livro" maxlength="500">
                         </div>
                     </div>
                     <button id="botao" onclick="cadastrar()">Cadastrar</button>
@@ -115,82 +119,29 @@
             <div class="card-login">
                 <span>Seus livros</span>
                 <div class="formulario">
-                    <input class="pesquisa" type="text" placeholder=" &#128269; Pesquisar por título">
+                    <input id="input_pesquisa" class="pesquisa" type="text"
+                        placeholder=" &#128269; Pesquisar por título" oninput="pesquisar()">
                     <div class="input_container_livros">
                         Ordenar por:
-                        <select id="select_ordenar">
+                        <select id="select_ordenar" onchange="ordenar()">
                             <option value="#">Selecione uma ordem</option>
-                            <option>Data de cadastro</option>
-                            <option>Nome em ordem crescente</option>
-                            <option>Nome em ordem decrescente</option>
-                            <option>Maior avaliação</option>
-                            <option>Menor avaliação</option>
+                            <option value="porDataCadastro">Data de cadastro</option>
+                            <option value="porNomeCrescente">Nome em ordem crescente</option>
+                            <option value="porNomeDecrescente">Nome em ordem decrescente</option>
+                            <option value="porMaiorAvaliacao">Maior avaliação</option>
+                            <option value="porMenorAvaliacao">Menor avaliação</option>
                         </select>
 
                         Filtrar:
-                        <select id="select_ordenar">
+                        <select id="select_filtrar" onchange="filtrar()">
                             <option value="#">Selecione um filtro</option>
-                            <option>Lidos</option>
-                            <option>Não Lidos</option>
-                            <option>Lendo</option>
+                            <option value="lido">Lidos</option>
+                            <option value="naoLido">Não Lidos</option>
+                            <option value="lendo">Lendo</option>
                         </select>
                     </div>
-                    <div class="class_livro">
-                        <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                        <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
-                        <div class="livro_genero"><b>Gênero:</b> Romance</div>
-                        <div class="livro_dtInicio"><b>Dt Início:</b> 11/10/2024</div>
-                        <div class="livro_dtTermino"><b>Dt Término:</b> 20/10/2024</div>
-                        <div class="livro_resenha"><b>Resenha:</b> "Eu adorei esse livro, pois ele consegue mostrar muito bem a diferença de classes e como as pessoas com menos condição financeira são tratadas, além disso também há bastante romance, que eu particularmente adoro S2"</div>
-                    </div>
-                    <div class="class_livro">
-                        <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                        <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
-                        <div class="livro_genero"><b>Gênero:</b> Romance</div>
-                        <div class="livro_dtInicio"><b>Dt Início:</b> 11/10/2024</div>
-                        <div class="livro_dtTermino"><b>Dt Término:</b> 20/10/2024</div>
-                        <div class="livro_resenha"><b>Resenha:</b> - </div>
-                    </div>
-                    <div class="class_livro">
-                        <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                        <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
-                        <div class="livro_genero"><b>Gênero:</b> Romance</div>
-                        <div class="livro_dtInicio"><b>Dt Início:</b> 11/10/2024</div>
-                        <div class="livro_dtTermino"><b>Dt Término:</b> 20/10/2024</div>
-                        <div class="livro_resenha"><b>Resenha:</b> "Eu adorei esse livro, pois ele consegue mostrar muito bem a diferença de classes e como as pessoas com menos condição financeira são tratadas, além disso também há bastante romance, que eu particularmente adoro S2"</div>
-                    </div>
-                    <div class="class_livro">
-                        <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                        <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
-                        <div class="livro_genero"><b>Gênero:</b> Romance</div>
-                        <div class="livro_dtInicio"><b>Dt Início:</b> 11/10/2024</div>
-                        <div class="livro_dtTermino"><b>Dt Término:</b> 20/10/2024</div>
-                        <div class="livro_resenha"><b>Resenha:</b> "Eu adorei esse livro, pois ele consegue mostrar muito bem a diferença de classes e como as pessoas com menos condição financeira são tratadas, além disso também há bastante romance, que eu particularmente adoro S2"</div>
-                    </div>
-                    <div class="class_livro">
-                        <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                        <div class="livro_1_avaliacao"><b>Avaliação: </b> - </div>
-                        <div class="livro_genero"><b>Gênero:</b> Ficção científica</div>
-                        <div class="livro_dtInicio"><b>Dt Início:</b> -</div>
-                        <div class="livro_dtTermino"><b>Dt Término:</b> -</div>
-                        <div class="livro_resenha"><b>Resenha:</b> -</div>
-                    </div>
-                    <div class="class_livro">
-                        <div class="livro_1_nome"><b>Nome: </b>A hipótese do amor</div>
-                        <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
-                        <div class="livro_genero"><b>Gênero:</b> Romance</div>
-                        <div class="livro_dtInicio"><b>Dt Início:</b> 11/10/2024</div>
-                        <div class="livro_dtTermino"><b>Dt Término:</b> 20/10/2024</div>
-                        <div class="livro_resenha"><b>Resenha:</b> "Eu adorei esse livro, pois ele consegue mostrar muito bem a diferença de classes e como as pessoas com menos condição financeira são tratadas, além disso também há bastante romance, que eu particularmente adoro S2"</div>
-                    </div>
-                    <div class="class_livro">
-                        <div class="livro_1_nome"><b>Nome: </b> Desventuras em série: a lago lacrimoso</div>
-                        <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
-                        <div class="livro_genero"><b>Gênero:</b> Romance</div>
-                        <div class="livro_dtInicio"><b>Dt Início:</b> 11/10/2024</div>
-                        <div class="livro_dtTermino"><b>Dt Término:</b> 20/10/2024</div>
-                        <div class="livro_resenha"><b>Resenha:</b> "Eu adorei esse livro, pois ele consegue mostrar muito bem a diferença de classes e como as pessoas com menos condição financeira são tratadas, além disso também há bastante romance, que eu particularmente adoro S2"</div>
-                    </div>
+                    <div class="container_livros">
+                        <div id="div_class_livro" class="class_livro"></div>
                     </div>
                 </div>
             </div>
@@ -203,6 +154,13 @@
 </html>
 
 <script>
+    var avaliacaoLivro = 0
+
+    function setarAvaliacao(avaliacao) {
+        avaliacaoLivro = avaliacao
+        console.log("avaliacaoLivro " + avaliacaoLivro)
+    }
+
     function ler() {
         var tipoLeitura = select_tipoLeitura.value
 
@@ -213,4 +171,560 @@
             lido.style.display = "none"
         }
     }
+
+    function cadastrar() {
+        var nome = input_nome.value
+        var autor = input_autor.value
+        var qtdPag = input_qtdPag.value
+        var genero = select_genero.value
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        if (nome == '' || autor == '' || qtdPag == '' || genero == '' || genero == '#') {
+            alert('Preencha todos os campos obrigatórios para prosseguir')
+        } else {
+            fetch("/livros/cadastrar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuario,
+                    nomeServer: nome,
+                    autorServer: autor,
+                    generoServer: genero,
+                    qtdPaginasServer: qtdPag,
+                })
+            }).then(async function (resposta) {
+                if (resposta.ok) {
+                    const dados = await resposta.json();
+                    sessionStorage.setItem("idLivro", dados.idLivro);
+
+                    cadastrarLivroUsuario()
+
+                    alert('Livro cadastrado com sucesso')
+                }
+                else {
+                    throw "Houve um erro ao tentar realizar o login!";
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+    }
+
+    function cadastrarLivroUsuario() {
+        var dtInicio = input_dtInicio.value
+        var dtTermino = input_dtTermino.value
+        var resenha = input_resenha.value
+        var statusLivro = select_tipoLeitura.value
+        var idUsuario = sessionStorage.getItem("idUsuario")
+        var fkLivro = sessionStorage.getItem("idLivro")
+
+        if (dtInicio == '') dtInicio = null
+        if (dtTermino == '') dtTermino = null
+        if (resenha == '') resenha = null
+
+        fetch("/livros/cadastrar-livro-usuario", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                fkLivroServer: fkLivro,
+                dtInicioServer: dtInicio,
+                dtTerminoServer: dtTermino,
+                estrelasServer: avaliacaoLivro,
+                statusLivroServer: statusLivro,
+                resenhaServer: resenha
+            })
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+                console.log('Livro usuario cadastrado com sucesso');
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o login!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function pesquisar() {
+        var nome = input_pesquisa.value
+        const container = document.getElementById("div_class_livro");
+        container.innerHTML = "";
+
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/livros/listar/${idUsuario}/pesquisar/${nome}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+                const container = document.getElementById("div_class_livro");
+
+                listaLivros.forEach((livro) => {
+                    const divLivro = document.createElement("div");
+                    divLivro.classList.add("class_livro");
+
+                    var estrela = '-'
+
+                    if (livro.estrelas == 1) estrela = '★'
+                    if (livro.estrelas == 2) estrela = '★ ★'
+                    if (livro.estrelas == 3) estrela = '★ ★ ★'
+                    if (livro.estrelas == 4) estrela = '★ ★ ★ ★'
+                    if (livro.estrelas == 5) estrela = '★ ★ ★ ★ ★'
+
+                    divLivro.innerHTML = `
+                        <div id="div_nome" class="livro_nome"><b>Nome: </b>${livro.nome}</div>
+                        <div id="div_autor" class="livro_autor"><b>Autor: </b>${livro.autor}</div>
+                        <div id="div_avaliacao" class="livro_avaliacao"><b>Avaliação: </b> ${estrela} </div>
+                        <div id="div_genero" class="livro_genero"><b>Gênero:</b> ${livro.genero}</div>
+                        <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
+                        <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
+                        <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                    `;
+
+                    container.appendChild(divLivro);
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o login!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function listarLivros() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/livros/listar/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+                const container = document.getElementById("div_class_livro");
+
+                listaLivros.forEach((livro) => {
+                    const divLivro = document.createElement("div");
+                    divLivro.classList.add("class_livro");
+                    var estrela = '-'
+
+                    if (livro.estrelas == 1) estrela = '★'
+                    if (livro.estrelas == 2) estrela = '★ ★'
+                    if (livro.estrelas == 3) estrela = '★ ★ ★'
+                    if (livro.estrelas == 4) estrela = '★ ★ ★ ★'
+                    if (livro.estrelas == 5) estrela = '★ ★ ★ ★ ★'
+
+                    divLivro.innerHTML = `
+                        <div id="div_nome" class="livro_nome"><b>Nome: </b>${livro.nome}</div>
+                        <div id="div_autor" class="livro_autor"><b>Autor: </b>${livro.autor}</div>
+                        <div id="div_avaliacao" class="livro_avaliacao"><b>Avaliação: </b> ${estrela} </div>
+                        <div id="div_genero" class="livro_genero"><b>Gênero:</b> ${livro.genero}</div>
+                        <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
+                        <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
+                        <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                        <button onclick="teste()">teste</button>
+                    `;
+
+                    container.appendChild(divLivro);
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o login!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function teste() {
+        alert('cliquei no botao')
+    }
+
+    function ordenar() {
+        var filtro = select_ordenar.value
+        const container = document.getElementById("div_class_livro");
+        container.innerHTML = "";
+
+        if (filtro == 'porDataCadastro') ordenarPorDataCadastro()
+        if (filtro == 'porNomeCrescente') ordenarPorNomeCrescente()
+        if (filtro == 'porNomeDecrescente') ordenarPorNomeDecrescente()
+        if (filtro == 'porMaiorAvaliacao') ordenarPorMaiorAvaliacao()
+        if (filtro == 'porMenorAvaliacao') ordenarPorMenorAvaliacao()
+    }
+
+    function ordenarPorDataCadastro() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/livros/listar/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+                const container = document.getElementById("div_class_livro");
+
+                listaLivros.forEach((livro) => {
+                    const divLivro = document.createElement("div");
+                    divLivro.classList.add("class_livro");
+
+                    var estrela = '-'
+
+                    if (livro.estrelas == 1) estrela = '★'
+                    if (livro.estrelas == 2) estrela = '★ ★'
+                    if (livro.estrelas == 3) estrela = '★ ★ ★'
+                    if (livro.estrelas == 4) estrela = '★ ★ ★ ★'
+                    if (livro.estrelas == 5) estrela = '★ ★ ★ ★ ★'
+
+                    divLivro.innerHTML = `
+                        <div id="div_nome" class="livro_nome"><b>Nome: </b>${livro.nome}</div>
+                        <div id="div_autor" class="livro_autor"><b>Autor: </b>${livro.autor}</div>
+                        <div id="div_avaliacao" class="livro_avaliacao"><b>Avaliação: </b> ${estrela}</div>
+                        <div id="div_genero" class="livro_genero"><b>Gênero:</b> ${livro.genero}</div>
+                        <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
+                        <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
+                        <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                    `;
+
+                    container.appendChild(divLivro);
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o login!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function ordenarPorNomeCrescente() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/livros/listar/${idUsuario}/nome-crescente`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+                const container = document.getElementById("div_class_livro");
+
+                listaLivros.forEach((livro) => {
+                    const divLivro = document.createElement("div");
+                    divLivro.classList.add("class_livro");
+
+                    var estrela = '-'
+
+                    if (livro.estrelas == 1) estrela = '★'
+                    if (livro.estrelas == 2) estrela = '★ ★'
+                    if (livro.estrelas == 3) estrela = '★ ★ ★'
+                    if (livro.estrelas == 4) estrela = '★ ★ ★ ★'
+                    if (livro.estrelas == 5) estrela = '★ ★ ★ ★ ★'
+
+                    divLivro.innerHTML = `
+                        <div id="div_nome" class="livro_nome"><b>Nome: </b>${livro.nome}</div>
+                        <div id="div_autor" class="livro_autor"><b>Autor: </b>${livro.autor}</div>
+                        <div id="div_avaliacao" class="livro_avaliacao"><b>Avaliação: </b> ${estrela} </div>
+                        <div id="div_genero" class="livro_genero"><b>Gênero:</b> ${livro.genero}</div>
+                        <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
+                        <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
+                        <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                    `;
+
+                    container.appendChild(divLivro);
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o login!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function ordenarPorNomeDecrescente() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/livros/listar/${idUsuario}/nome-decrescente`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+                const container = document.getElementById("div_class_livro");
+
+                listaLivros.forEach((livro) => {
+                    const divLivro = document.createElement("div");
+                    divLivro.classList.add("class_livro");
+
+                    var estrela = '-'
+
+                    if (livro.estrelas == 1) estrela = '★'
+                    if (livro.estrelas == 2) estrela = '★ ★'
+                    if (livro.estrelas == 3) estrela = '★ ★ ★'
+                    if (livro.estrelas == 4) estrela = '★ ★ ★ ★'
+                    if (livro.estrelas == 5) estrela = '★ ★ ★ ★ ★'
+
+                    divLivro.innerHTML = `
+                        <div id="div_nome" class="livro_nome"><b>Nome: </b>${livro.nome}</div>
+                        <div id="div_autor" class="livro_autor"><b>Autor: </b>${livro.autor}</div>
+                        <div id="div_avaliacao" class="livro_avaliacao"><b>Avaliação: </b> ${estrela} </div>
+                        <div id="div_genero" class="livro_genero"><b>Gênero:</b> ${livro.genero}</div>
+                        <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
+                        <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
+                        <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                    `;
+
+                    container.appendChild(divLivro);
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o login!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function ordenarPorMaiorAvaliacao() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/livros/listar/${idUsuario}/maior-avaliacao`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+                const container = document.getElementById("div_class_livro");
+
+                listaLivros.forEach((livro) => {
+                    const divLivro = document.createElement("div");
+                    divLivro.classList.add("class_livro");
+
+                    var estrela = '-'
+
+                    if (livro.estrelas == 1) estrela = '★'
+                    if (livro.estrelas == 2) estrela = '★ ★'
+                    if (livro.estrelas == 3) estrela = '★ ★ ★'
+                    if (livro.estrelas == 4) estrela = '★ ★ ★ ★'
+                    if (livro.estrelas == 5) estrela = '★ ★ ★ ★ ★'
+
+                    divLivro.innerHTML = `
+                        <div id="div_nome" class="livro_nome"><b>Nome: </b>${livro.nome}</div>
+                        <div id="div_autor" class="livro_autor"><b>Autor: </b>${livro.autor}</div>
+                        <div id="div_avaliacao" class="livro_avaliacao"><b>Avaliação: </b> ${estrela} </div>
+                        <div id="div_genero" class="livro_genero"><b>Gênero:</b> ${livro.genero}</div>
+                        <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
+                        <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
+                        <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                    `;
+
+                    container.appendChild(divLivro);
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o login!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function ordenarPorMenorAvaliacao() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/livros/listar/${idUsuario}/menor-avaliacao`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+                const container = document.getElementById("div_class_livro");
+
+                listaLivros.forEach((livro) => {
+                    const divLivro = document.createElement("div");
+                    divLivro.classList.add("class_livro");
+
+                    var estrela = '-'
+
+                    if (livro.estrelas == 1) estrela = '★'
+                    if (livro.estrelas == 2) estrela = '★ ★'
+                    if (livro.estrelas == 3) estrela = '★ ★ ★'
+                    if (livro.estrelas == 4) estrela = '★ ★ ★ ★'
+                    if (livro.estrelas == 5) estrela = '★ ★ ★ ★ ★'
+
+                    divLivro.innerHTML = `
+                        <div id="div_nome" class="livro_nome"><b>Nome: </b>${livro.nome}</div>
+                        <div id="div_autor" class="livro_autor"><b>Autor: </b>${livro.autor}</div>
+                        <div id="div_avaliacao" class="livro_avaliacao"><b>Avaliação: </b> ${estrela} </div>
+                        <div id="div_genero" class="livro_genero"><b>Gênero:</b> ${livro.genero}</div>
+                        <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
+                        <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
+                        <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                    `;
+
+                    container.appendChild(divLivro);
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o login!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function filtrar() {
+        var filtro = select_filtrar.value
+        const container = document.getElementById("div_class_livro");
+        container.innerHTML = "";
+
+        if (filtro == '#') listarLivros()
+        if (filtro == 'lido') filtrarPorLido()
+        if (filtro == 'naoLido') filtrarPorNaoLido()
+        if (filtro == 'lendo') filtrarPorLendo()
+    }
+
+    function filtrarPorLido() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/livros/listar/${idUsuario}/lido`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+                const container = document.getElementById("div_class_livro");
+
+                listaLivros.forEach((livro) => {
+                    const divLivro = document.createElement("div");
+                    divLivro.classList.add("class_livro");
+
+                    var estrela = '-'
+
+                    if (livro.estrelas == 1) estrela = '★'
+                    if (livro.estrelas == 2) estrela = '★ ★'
+                    if (livro.estrelas == 3) estrela = '★ ★ ★'
+                    if (livro.estrelas == 4) estrela = '★ ★ ★ ★'
+                    if (livro.estrelas == 5) estrela = '★ ★ ★ ★ ★'
+
+                    divLivro.innerHTML = `
+                        <div id="div_nome" class="livro_nome"><b>Nome: </b>${livro.nome}</div>
+                        <div id="div_autor" class="livro_autor"><b>Autor: </b>${livro.autor}</div>
+                        <div id="div_avaliacao" class="livro_avaliacao"><b>Avaliação: </b> ${estrela} </div>
+                        <div id="div_genero" class="livro_genero"><b>Gênero:</b> ${livro.genero}</div>
+                        <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
+                        <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
+                        <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                    `;
+
+                    container.appendChild(divLivro);
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o login!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function filtrarPorNaoLido() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/livros/listar/${idUsuario}/nao-lido`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+                const container = document.getElementById("div_class_livro");
+
+                listaLivros.forEach((livro) => {
+                    const divLivro = document.createElement("div");
+                    divLivro.classList.add("class_livro");
+
+                    var estrela = '-'
+
+                    if (livro.estrelas == 1) estrela = '★'
+                    if (livro.estrelas == 2) estrela = '★ ★'
+                    if (livro.estrelas == 3) estrela = '★ ★ ★'
+                    if (livro.estrelas == 4) estrela = '★ ★ ★ ★'
+                    if (livro.estrelas == 5) estrela = '★ ★ ★ ★ ★'
+
+                    divLivro.innerHTML = `
+                        <div id="div_nome" class="livro_nome"><b>Nome: </b>${livro.nome}</div>
+                        <div id="div_autor" class="livro_autor"><b>Autor: </b>${livro.autor}</div>
+                        <div id="div_avaliacao" class="livro_avaliacao"><b>Avaliação: </b> ${estrela} </div>
+                        <div id="div_genero" class="livro_genero"><b>Gênero:</b> ${livro.genero}</div>
+                        <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
+                        <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
+                        <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                    `;
+
+                    container.appendChild(divLivro);
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o login!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function filtrarPorLendo() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/livros/listar/${idUsuario}/lendo`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+                const container = document.getElementById("div_class_livro");
+
+                listaLivros.forEach((livro) => {
+                    const divLivro = document.createElement("div");
+                    divLivro.classList.add("class_livro");
+
+                    var estrela = '-'
+
+                    if (livro.estrelas == 1) estrela = '★'
+                    if (livro.estrelas == 2) estrela = '★ ★'
+                    if (livro.estrelas == 3) estrela = '★ ★ ★'
+                    if (livro.estrelas == 4) estrela = '★ ★ ★ ★'
+                    if (livro.estrelas == 5) estrela = '★ ★ ★ ★ ★'
+
+                    divLivro.innerHTML = `
+                        <div id="div_nome" class="livro_nome"><b>Nome: </b>${livro.nome}</div>
+                        <div id="div_autor" class="livro_autor"><b>Autor: </b>${livro.autor}</div>
+                        <div id="div_avaliacao" class="livro_avaliacao"><b>Avaliação: </b> ${estrela} </div>
+                        <div id="div_genero" class="livro_genero"><b>Gênero:</b> ${livro.genero}</div>
+                        <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
+                        <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
+                        <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                    `;
+
+                    container.appendChild(divLivro);
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o login!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
 </script>

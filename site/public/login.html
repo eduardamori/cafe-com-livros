@@ -35,10 +35,10 @@
                 <span>Faça seu login</span>
                 <div class="formulario">
                     <div class="campo">
-                        <input id="input_email" type="text" placeholder="Login">
+                        <input id="input_email" type="text" placeholder="Login" value="eduardamori74@gmail.com">
                     </div>
                     <div class="campo">
-                        <input id="input_senha" type="text" placeholder="Senha">
+                        <input id="input_senha" type="password" placeholder="Senha" value="Dudinha!01">
                     </div>
                     <button id="botao" onclick="entrar()">Entrar</button>
                     <p id="cadastro">Não possui uma conta?
@@ -63,31 +63,31 @@
         } else {
             fetch("/usuarios/autenticar", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     emailServer: email,
                     senhaServer: senha
-                }),
-            })
-                .then(function (resposta) {
-                    console.log("resposta: ", resposta);
-
-                    if (resposta.ok) {
-                        alert('Login autenticado com sucesso! Redirecionando para tela da dashboard...');
-
-                        setTimeout(() => {
-                            window.location = "dashboard.html";
-                        }, "2000");
-                    }
-                    else {
-                        throw "Houve um erro ao tentar realizar o login!";
-                    }
                 })
-                .catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
-                });
+            }).then(async function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    sessionStorage.clear()
+                    const dados = await resposta.json();
+                    sessionStorage.setItem("idUsuario", dados.idUsuario);
+
+                    alert('Login autenticado com sucesso! Redirecionando para tela da dashboard...');
+
+                    setTimeout(() => {
+                        window.location = "dashboard.html";
+                    }, "2000");
+                }
+                else {
+                    throw "Houve um erro ao tentar realizar o login!";
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
         }
     }
 </script>
