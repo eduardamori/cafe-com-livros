@@ -186,13 +186,18 @@ body {
     min-height: 30px;
 }
 
-.kpi p {
+.kpi div {
     /* background-color: red; */
     font-size: 0.9em;
-    display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    text-align: left;
+    padding-left: 15px;
+}
+
+#livro_mais_cadastrado_1 {
+    text-align: left;
 }
 
 .kpi .favoritos {
@@ -260,11 +265,14 @@ span {
 
 .class_livro .livro_1_nome {
     display: inline;
-    min-width: 100px;
+    /* min-width: 450px; */
+    width: fit-content;
+    /* background-color: red; */
 }
 
-.class_livro .livro_1_avaliacao {
+.class_livro .livro_1_autor {
     display: inline;
-    justify-content: end;
+    justify-content: start;
     width: fit-content;
+    /* background-color: green; */
 }

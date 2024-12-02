@@ -11,12 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onload="carregarGraficos()">
 
     <div class="sidebar">
-        <img src="https://images.vexels.com/media/users/3/329809/isolated/preview/18b2b6c1ba490d273259b8d0f8811dcb-cup-of-coffee-with-a-heart-on-it-barista.png" class="logo">
+        <img src="https://images.vexels.com/media/users/3/329809/isolated/preview/18b2b6c1ba490d273259b8d0f8811dcb-cup-of-coffee-with-a-heart-on-it-barista.png"
+            class="logo">
         <div>
-            <p>Olá, Eduarda</p>
+            <p id="nome_header">Olá, </p>
         </div>
         <a href="home.html" class="button" onclick="voltar()" id="home">Voltar para Home</a>
         <a href="livros.html" class="button" onclick="cadastrar()" id="livros">Estante</a>
@@ -29,30 +30,28 @@
         <div class="kpi-container">
             <div class="kpi">
                 <h3>Total de livros</h3>
-                <p class="kpi_qtd">203</p>
+                <p id="div_kpi_qtd_livros" class="kpi_qtd"></p>
+            </div>
+
+            <div class="kpi">
+                <h3>Total de páginas</h3>
+                <p id="div_kpi_qtd_paginas" class="kpi_qtd"></p>
             </div>
 
             <div class="kpi">
                 <h3>Total de páginas lidas</h3>
-                <p class="kpi_qtd">15000</p>
+                <p id="div_kpi_qtd_paginas_lidas" class="kpi_qtd"></p>
             </div>
 
             <div class="kpi">
-                <h3>Favoritos dos usuários</h3>
-                <p class="favoritos">1° O amor não é óbvio <br>
-                    2° A hipótese do amor <br>
-                    3° Véspera <br>
-                    4° A bailarina fantasma <br>
-                    5° Diário de um banana</p>
-            </div>
-
-            <div class="kpi">
-                <h3>Seus favoritos</h3>
-                <p class="favoritos">1° <br>
-                    2° <br>
-                    3° <br>
-                    4° <br>
-                    5°</p>
+                <h3>Mais adicionados pelos usuários</h3>
+                <p id="div_kpi_mais_adicionados" class="favoritos">
+                <div id="livro_mais_cadastrado_1">1°</div>
+                <div id="livro_mais_cadastrado_2">2°</div>
+                <div id="livro_mais_cadastrado_3">3°</div>
+                <div id="livro_mais_cadastrado_4">4°</div>
+                <div id="livro_mais_cadastrado_5">5°</div>
+                </p>
             </div>
         </div>
 
@@ -63,20 +62,20 @@
             </div>
 
             <div class="chart-box duda-chart" id="livrosPorAutores_chart_box">
-                <div class="chart-title">Livros por autores</div>
+                <div class="chart-title">5 Autores mais lidos</div>
                 <canvas id="autoresMaisLidos_chart"></canvas>
             </div>
         </div>
 
         <div class="charts">
             <div class="chart-box duda-chart" id="livrosLidosMes_chart_box">
-                <div class="chart-title">Livros lidos por mês</div>
+                <div class="chart-title">Livros lidos por mês em 2024</div>
                 <canvas id="livrosLidosMes_chart"></canvas>
             </div>
 
 
             <div class="chart-box duda-chart" id="paginasLidasMes_chart_box">
-                <div class="chart-title">Páginas lidas por mês</div>
+                <div class="chart-title">Páginas lidas por mês em 2024</div>
                 <canvas id="paginasLidasMes_chart"></canvas>
             </div>
         </div>
@@ -89,74 +88,459 @@
 
             <div class="chart-box duda-chart">
                 <span>
-                    Lista de favoritos
+                    Últimos cadastrados
                 </span>
                 <!-- livro 1 -->
                 <div class="class_livro">
-                    <div class="livro_1_nome"><b>Nome: </b>A hipótese do amor</div>
-                    <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
+                    <div id="nome_ultimo_cadastro_1" class="livro_1_nome"></div>
+                    <div id="autor_ultimo_cadastro_1" class="livro_1_autor"></div>
                 </div>
                 <!-- livro 2 -->
                 <div class="class_livro">
-                    <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                    <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
+                    <div id="nome_ultimo_cadastro_2" class="livro_1_nome"></div>
+                    <div id="autor_ultimo_cadastro_2" class="livro_1_autor"></div>
                 </div>
                 <!-- livro 3 -->
                 <div class="class_livro">
-                    <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                    <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
+                    <div id="nome_ultimo_cadastro_3" class="livro_1_nome"></div>
+                    <div id="autor_ultimo_cadastro_3" class="livro_1_autor"></div>
                 </div>
                 <!-- livro 4 -->
                 <div class="class_livro">
-                    <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                    <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
+                    <div id="nome_ultimo_cadastro_4" class="livro_1_nome"></div>
+                    <div id="autor_ultimo_cadastro_4" class="livro_1_autor"></div>
                 </div>
                 <!-- livro 5 -->
                 <div class="class_livro">
-                    <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                    <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
+                    <div id="nome_ultimo_cadastro_5" class="livro_1_nome"></div>
+                    <div id="autor_ultimo_cadastro_5" class="livro_1_autor"></div>
                 </div>
                 <!-- livro 6 -->
                 <div class="class_livro">
-                    <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                    <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
+                    <div id="nome_ultimo_cadastro_6" class="livro_1_nome"></div>
+                    <div id="autor_ultimo_cadastro_6" class="livro_1_autor"></div>
                 </div>
                 <!-- livro 7 -->
                 <div class="class_livro">
-                    <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                    <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
+                    <div id="nome_ultimo_cadastro_7" class="livro_1_nome"></div>
+                    <div id="autor_ultimo_cadastro_7" class="livro_1_autor"></div>
                 </div>
                 <!-- livro 8 -->
                 <div class="class_livro">
-                    <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                    <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
+                    <div id="nome_ultimo_cadastro_8" class="livro_1_nome"></div>
+                    <div id="autor_ultimo_cadastro_8" class="livro_1_autor"></div>
                 </div>
-                <!-- livro 9 -->
-                <!-- <div class="class_livro">
-                    <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                    <div class="livro_1_avaliacao"><b>Avaliação: </b> ★ ★ ★ ★ ★</div>
-                </div> -->
-                <!-- livro 10 -->
-                <!-- <div class="class_livro">
-                    <div class="livro_1_nome"><b>Nome: </b>A selecao</div>
-                    <div class="livro_1_avaliacao"><b>Avaliação: </b> &#10025; &#10025; &#10025; &#10025; &#10025;</div>
-                </div> -->
-                <!-- <button id="toggleButton" class="toggle-button">Mostrar Linha Limite</button> -->
             </div>
         </div>
     </div>
-
-    <!-- <div id="tela2" class="content">
-        <h1><strong>Moum Soya</strong><br><span class="tech-title">TECHNOLOGY</span></h1><br>
-        <div class="chart-box bar-alert">
-            <div id="alertTitle" class="chart-title">Total Alertas da Fazenda</div>
-            <canvas id="alertChart"></canvas>
-        </div>
-    </div> -->
-
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 
 </html>
+
+<script>
+
+    function carregarGraficos() {
+        nome_header.innerHTML = `Olá, ${sessionStorage.getItem('nomeUsuario')}`
+        resgatarTotalLivros()
+        resgatarTotalPaginas()
+        resgatarTotalPaginasLidas()
+        resgatarMaisAdicionados()
+        exibirGraficoLivrosPorGenero()
+        exibirGraficoAutoresMaisLidos()
+        exibirGraficoLivrosPorMes()
+        exibirGraficoPaginasPorMes()
+        exibirGraficoStatusLivro()
+        resgatarUltimosCadastros()
+    }
+
+    function exibirGraficoLivrosPorGenero() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/graficos/resgatar-livros-por-genero/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                var generos = []
+                var totalGeneros = []
+                const retornadoPeloBancoDeDados = await resposta.json();
+
+                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
+                    generos.push(retornadoPeloBancoDeDados[i].genero)
+                }
+
+                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
+                    totalGeneros.push(retornadoPeloBancoDeDados[i].quantidade_cadastrada)
+                }
+
+                const ctx = document.getElementById('livrosPorGenero_chart').getContext('2d');
+                const livrosPorGeneroChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: generos,
+                        datasets: [{
+                            label: 'Quantidade por Livros',
+                            data: totalGeneros,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o gráfico 1!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function exibirGraficoLivrosPorMes() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/graficos/resgatar-livros-por-mes/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                var mes = []
+                var totalLivros = []
+                const retornadoPeloBancoDeDados = await resposta.json();
+
+                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
+                    totalLivros.push(retornadoPeloBancoDeDados[i].totalLivros)
+                }
+
+                console.log(totalLivros)
+
+                const ctx = document.getElementById('livrosLidosMes_chart').getContext('2d');
+                const livrosPorMesChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                        datasets: [{
+                            label: 'Quantidade por Mes',
+                            data: totalLivros,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o gráfico 3!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function exibirGraficoPaginasPorMes() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/graficos/resgatar-paginas-por-mes/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                var mes = []
+                var totalPaginas = []
+                const retornadoPeloBancoDeDados = await resposta.json();
+
+                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
+                    totalPaginas.push(retornadoPeloBancoDeDados[i].totalPaginas)
+                }
+
+                const ctx = document.getElementById('paginasLidasMes_chart').getContext('2d');
+                const paginasPorMesChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                        datasets: [{
+                            label: 'Quantidade por Mes',
+                            data: totalPaginas,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o gráfico 4!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function exibirGraficoAutoresMaisLidos() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/graficos/resgatar-livros-por-autor/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                var autores = []
+                var totalAutores = []
+                const retornadoPeloBancoDeDados = await resposta.json();
+
+                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
+                    autores.push(retornadoPeloBancoDeDados[i].autor)
+                }
+
+                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
+                    totalAutores.push(retornadoPeloBancoDeDados[i].quantidade_cadastrada)
+                }
+
+                console.log("retornadoPeloBancoDeDados" + retornadoPeloBancoDeDados)
+                console.log("Vetor de autores" + autores)
+                console.log("Vetor de totalAutores" + totalAutores)
+
+                const ctx = document.getElementById('autoresMaisLidos_chart').getContext('2d');
+                const livrosPorAutoresChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: autores,
+                        datasets: [{
+                            label: 'Quantidade por Livros',
+                            data: totalAutores,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o gráfico 2!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function resgatarTotalLivros() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/graficos/kpi/resgatar-total-livros/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+                const totalLivros = await resposta.json();
+                // alert(`Está retornando a KPI 1 ${totalLivros.livros}`)
+                div_kpi_qtd_livros.innerHTML = `${totalLivros.livros}`
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o chamado!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function resgatarTotalPaginas() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/graficos/kpi/resgatar-total-paginas/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+                const totalPaginas = await resposta.json();
+                var resultado = totalPaginas.soma
+                if (resultado == null) {
+                    resultado = 0
+                }
+                else {
+                    resultado = totalPaginas.soma
+                }
+                // alert(`está retornando a KPI 2 ${totalPaginas.soma}`)
+                div_kpi_qtd_paginas.innerHTML = `${resultado}`
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o chamado 2!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function resgatarTotalPaginasLidas() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/graficos/kpi/resgatar-total-paginas-lidas/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+                const totalPaginasLidas = await resposta.json();
+                resultado = totalPaginasLidas.somaLidos
+                if (resultado == null) {
+                    resultado = 0
+                }
+                else {
+                    resultado = totalPaginasLidas.somaLidos
+                }
+                // alert(`está retornando a KPI 3 ${totalPaginasLidas.somaLidos}`)
+
+                div_kpi_qtd_paginas_lidas.innerHTML = `${resultado}`
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o chamado 3!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function resgatarMaisAdicionados() {
+        fetch(`/graficos/kpi/resgatar-mais-adicionados`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+                const maisAdicionados = await resposta.json();
+                resultado = maisAdicionados.quantidadeCadastrada
+
+                livro_mais_cadastrado_1.innerHTML = `1° - ${maisAdicionados[0].nome}`
+                livro_mais_cadastrado_2.innerHTML = `2° - ${maisAdicionados[1].nome}`
+                livro_mais_cadastrado_3.innerHTML = `3° - ${maisAdicionados[2].nome}`
+                livro_mais_cadastrado_4.innerHTML = `4° - ${maisAdicionados[3].nome}`
+                livro_mais_cadastrado_5.innerHTML = `5° - ${maisAdicionados[4].nome}`
+
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o chamado 4!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function exibirGraficoStatusLivro() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+
+        fetch(`/graficos/resgatar-status-livro/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                var statusLivro = []
+                var quantidade = []
+
+                const retornadoPeloBancoDeDados = await resposta.json();
+
+                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
+                    quantidade.push(retornadoPeloBancoDeDados[i].quantidade)
+                }
+
+                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
+                    statusLivro.push(retornadoPeloBancoDeDados[i].statusLivro)
+                }
+
+                const ctx = document.getElementById('livros_chart').getContext('2d');
+                const livrosPorStatusChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: statusLivro,
+                        datasets: [{
+                            label: statusLivro,
+                            data: quantidade, 
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o gráfico 1!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function resgatarUltimosCadastros() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+        fetch(`/graficos/resgatar-ultimos-cadastros/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+                const ultimosCadastros = await resposta.json();
+                resultado = ultimosCadastros
+
+                nome_ultimo_cadastro_1.innerHTML = `<b>Nome:</b> ${ultimosCadastros[0].nome}`
+                autor_ultimo_cadastro_1.innerHTML = `<b> Autor: </b> ${ultimosCadastros[0].autor}`
+                nome_ultimo_cadastro_2.innerHTML = `<b>Nome:</b> ${ultimosCadastros[1].nome}`
+                autor_ultimo_cadastro_2.innerHTML = `<b> Autor: </b> ${ultimosCadastros[1].autor}`
+                nome_ultimo_cadastro_3.innerHTML = `<b>Nome:</b> ${ultimosCadastros[2].nome}`
+                autor_ultimo_cadastro_3.innerHTML = `<b> Autor: </b> ${ultimosCadastros[2].autor}`
+                nome_ultimo_cadastro_4.innerHTML = `<b>Nome:</b> ${ultimosCadastros[3].nome}`
+                autor_ultimo_cadastro_4.innerHTML = `<b> Autor: </b> ${ultimosCadastros[3].autor}`
+                nome_ultimo_cadastro_5.innerHTML = `<b>Nome:</b> ${ultimosCadastros[4].nome}`
+                autor_ultimo_cadastro_5.innerHTML = `<b> Autor: </b> ${ultimosCadastros[4].autor}`
+                nome_ultimo_cadastro_6.innerHTML = `<b>Nome:</b> ${ultimosCadastros[5].nome}`
+                autor_ultimo_cadastro_6.innerHTML = `<b> Autor: </b> ${ultimosCadastros[5].autor}`
+                nome_ultimo_cadastro_7.innerHTML = `<b>Nome:</b> ${ultimosCadastros[6].nome}`
+                autor_ultimo_cadastro_7.innerHTML = `<b> Autor: </b> ${ultimosCadastros[6].autor}`
+                nome_ultimo_cadastro_8.innerHTML = `<b>Nome:</b> ${ultimosCadastros[7].nome}`
+                autor_ultimo_cadastro_8.innerHTML = `<b> Autor: </b> ${ultimosCadastros[7].autor}`
+
+            }
+            else {
+                throw "Houve um erro ao tentar realizar o chamado 4!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+</script>

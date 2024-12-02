@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café com livros | Dashboard</title>
+    <link rel="stylesheet" href="css/livros.css">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+</head>
+
+<body onload="carregarInformacoes()">
+
+    <div class="sidebar">
+        <img src="https://images.vexels.com/media/users/3/329809/isolated/preview/18b2b6c1ba490d273259b8d0f8811dcb-cup-of-coffee-with-a-heart-on-it-barista.png"
+            class="logo">
+        <div>
+            <p id="nome_header"></p>
+        </div>
+        <a href="home.html" class="button" onclick="voltar()" id="home">Voltar para Home</a>
+        <a href="livros.html" class="button" onclick="cadastrar()" id="livros">Estante</a>
+        <a href="dashboard.html" class="button" onclick="ver()" id="dash">Análise da estante</a>
+        <a href="index.html" class="button" onclick="sair()" id="saindo">Sair</a>
+    </div>
+
+    <div id="tela1" class="content">
+        <h1><span class="tech-title">Estante</span></h1><br>
+    </div>
+
+    <div class="login">
+        <div class="container">
+            <div class="card-login">
+                <span>Atualizar livro:</span>
+                <div class="formulario">
+                    <div class="campo">
+                        Nome:
+                        <input id="input_nome" type="text" placeholder="Nome do livro">
+                    </div>
+                    <br>
+                    <div class="campo">
+                        Autor(a):
+                        <input id="input_autor" type="text" placeholder="Autor(a) do livro">
+                    </div>
+                    <br>
+                    <div class="campo">
+                        Quantidade de páginas:
+                        <input id="input_qtdPag" type="number" placeholder="Quantidade de páginas do livro">
+                    </div>
+                    <br>
+                    <div class="input_container">
+                        Gênero:
+                        <select id="select_genero">
+                            <option value="#">Selecione o gênero do livro</option>
+                            <option value="romance">Romance</option>
+                            <option value="fantasia">Fantasia</option>
+                            <option value="ficcao científica">Ficção científica</option>
+                            <option value="suspense">Suspense</option>
+                            <option value="poesia">Poesia</option>
+                            <option value="ficção histórica">Ficção histórica</option>
+                            <option value="literatura clássica">Literatura clássica</option>
+                            <option value="terror">Terror</option>
+                            <option value="religião">Religião</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="input_container">
+                        Tipo de leitura
+                        <select id="select_tipoLeitura" onchange="ler()">
+                            <option value="#">Selecione um status de leitura</option>
+                            <option value="Lido">Lido</option>
+                            <option value="Lendo">Lendo</option>
+                            <option value="Nao lido">Não lido</option>
+                        </select>
+                    </div>
+                    <div id="lido" class="first card" style="display: none;">
+                        <div class="text_container"></div>
+                        <div class="name">
+                            <p>Avaliação</p>
+                        </div>
+                        <div class="card_btn">
+                            <div class="star-rating">
+                                <input type="radio" name="rating1" id="rating1-5" value="5"
+                                    onclick="setarAvaliacao(5)"><label for="rating1-5">★</label>
+                                <input type="radio" name="rating1" id="rating1-4" value="4"
+                                    onclick="setarAvaliacao(4)"><label for="rating1-4">★</label>
+                                <input type="radio" name="rating1" id="rating1-3" value="3"
+                                    onclick="setarAvaliacao(3)"><label for="rating1-3">★</label>
+                                <input type="radio" name="rating1" id="rating1-2" value="2"
+                                    onclick="setarAvaliacao(2)"><label for="rating1-2">★</label>
+                                <input type="radio" name="rating1" id="rating1-1" value="1"
+                                    onclick="setarAvaliacao(1)"><label for="rating1-1">★</label>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Data de início da leitura</p>
+                            <div>
+                                <input class="data" id="input_dtInicio" type="date">
+                            </div>
+                            <p>Data de término da leitura</p>
+                            <div>
+                                <input class="data" id="input_dtTermino" type="date">
+                            </div>
+                        </div>
+                        <div class="campo">
+                            Resenha:
+                            <input id="input_resenha" type="text" placeholder="Resenha sobre o livro" maxlength="500">
+                        </div>
+                    </div>
+                    <button id="botao" onclick="atualizar()">Atualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var avaliacaoLivro = 0
+
+    function carregarInformacoes() {
+        resgatarLivro()
+        nome_header.innerHTML = `Olá, ${sessionStorage.getItem('nomeUsuario')}`
+
+    }
+
+    function setarAvaliacao(avaliacao) {
+        avaliacaoLivro = avaliacao
+        console.log("avaliacaoLivro " + avaliacaoLivro)
+    }
+
+    function ler() {
+        var tipoLeitura = select_tipoLeitura.value
+
+        if (tipoLeitura == 'Lido') {
+            lido.style.display = "block"
+        }
+        else {
+            lido.style.display = "none"
+        }
+    }
+
+    function atualizar() {
+        var nome = input_nome.value
+        var autor = input_autor.value
+        var qtdPag = input_qtdPag.value
+        var genero = select_genero.value
+        var idUsuario = sessionStorage.getItem("idUsuario")
+        var dtInicio = input_dtInicio.value
+        var dtTermino = input_dtTermino.value
+        var resenha = input_resenha.value
+        var statusLivro = select_tipoLeitura.value
+        var fkLivro = sessionStorage.getItem("idLivro")
+        var estrelas = avaliacaoLivro
+
+        if (dtInicio == '') dtInicio = null
+        if (dtTermino == '') dtTermino = null
+        if (resenha == '') resenha = null
+
+        if (nome == '' || autor == '' || qtdPag == '' || genero == '' || genero == '#') {
+            alert('Preencha todos os campos obrigatórios para prosseguir')
+        } else {
+            var idLivro = sessionStorage.getItem("idLivro")
+
+            fetch(`/livros/atualizar-livro/${idLivro}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuario,
+                    nomeServer: nome,
+                    autorServer: autor,
+                    generoServer: genero,
+                    qtdPaginasServer: qtdPag,
+                    dtInicioServer: dtInicio,
+                    dtTerminoServer: dtTermino,
+                    estrelasServer: estrelas,
+                    statusLivroServer: statusLivro,
+                    resenhaServer: resenha,
+                })
+            }).then(async function (resposta) {
+                if (resposta.ok) {
+                    alert('Livro atualizado com sucesso')
+
+                    setTimeout(() => {
+                        window.location = "livros.html";
+                    }, "2000");
+                }
+                else {
+                    throw "Houve um erro ao tentar atualizar o livro!";
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+    }
+
+    function resgatarLivro() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+        var idLivro = sessionStorage.getItem("idLivro")
+
+        fetch(`/livros/buscar-livro/${idLivro}/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+
+                console.log(listaLivros[0].statusLivro)
+
+                input_nome.value = `${listaLivros[0].nome}`
+                input_autor.value = `${listaLivros[0].autor}`
+                input_qtdPag.value = `${listaLivros[0].numPaginas}`
+                select_genero.value = `${listaLivros[0].genero}`
+                select_tipoLeitura.value = `${listaLivros[0].statusLivro}`
+                avaliacaoLivro = `${listaLivros[0].estrelas}`
+                input_dtInicio.value = `${listaLivros[0].dtInicio}`
+                input_dtTermino.value = `${listaLivros[0].dtTermino}`
+                input_resenha.value = `${listaLivros[0].resenha}`
+
+                ler()
+            }
+            else {
+                throw "Houve um erro ao resgatar o livro!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+</script>
