@@ -11,16 +11,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 </head>
 
-<body onload="listarLivros()">
+<body onload="carregarInformacoes()">
 
     <div class="sidebar">
         <img src="https://images.vexels.com/media/users/3/329809/isolated/preview/18b2b6c1ba490d273259b8d0f8811dcb-cup-of-coffee-with-a-heart-on-it-barista.png"
             class="logo">
         <div>
-            <p>Olá, Eduarda</p>
+            <p id="nome_header"></p>
         </div>
         <a href="home.html" class="button" onclick="voltar()" id="home">Voltar para Home</a>
-        <a href="#" class="button" onclick="cadastrar()" id="livros">Estante</a>
+        <a href="livros.html" class="button" onclick="cadastrar()" id="livros">Estante</a>
         <a href="dashboard.html" class="button" onclick="ver()" id="dash">Análise da estante</a>
         <a href="index.html" class="button" onclick="sair()" id="saindo">Sair</a>
     </div>
@@ -120,6 +120,12 @@
 <script>
     var avaliacaoLivro = 0
 
+    function carregarInformacoes() {
+        resgatarLivro()
+        nome_header.innerHTML = `Olá, ${sessionStorage.getItem('nomeUsuario')}`
+
+    }
+
     function setarAvaliacao(avaliacao) {
         avaliacaoLivro = avaliacao
         console.log("avaliacaoLivro " + avaliacaoLivro)
@@ -134,5 +140,93 @@
         else {
             lido.style.display = "none"
         }
+    }
+
+    function atualizar() {
+        var nome = input_nome.value
+        var autor = input_autor.value
+        var qtdPag = input_qtdPag.value
+        var genero = select_genero.value
+        var idUsuario = sessionStorage.getItem("idUsuario")
+        var dtInicio = input_dtInicio.value
+        var dtTermino = input_dtTermino.value
+        var resenha = input_resenha.value
+        var statusLivro = select_tipoLeitura.value
+        var fkLivro = sessionStorage.getItem("idLivro")
+        var estrelas = avaliacaoLivro
+
+        if (dtInicio == '') dtInicio = null
+        if (dtTermino == '') dtTermino = null
+        if (resenha == '') resenha = null
+
+        if (nome == '' || autor == '' || qtdPag == '' || genero == '' || genero == '#') {
+            alert('Preencha todos os campos obrigatórios para prosseguir')
+        } else {
+            var idLivro = sessionStorage.getItem("idLivro")
+
+            fetch(`/livros/atualizar-livro/${idLivro}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuario,
+                    nomeServer: nome,
+                    autorServer: autor,
+                    generoServer: genero,
+                    qtdPaginasServer: qtdPag,
+                    dtInicioServer: dtInicio,
+                    dtTerminoServer: dtTermino,
+                    estrelasServer: estrelas,
+                    statusLivroServer: statusLivro,
+                    resenhaServer: resenha,
+                })
+            }).then(async function (resposta) {
+                if (resposta.ok) {
+                    alert('Livro atualizado com sucesso')
+
+                    setTimeout(() => {
+                        window.location = "livros.html";
+                    }, "2000");
+                }
+                else {
+                    throw "Houve um erro ao tentar atualizar o livro!";
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+    }
+
+    function resgatarLivro() {
+        var idUsuario = sessionStorage.getItem("idUsuario")
+        var idLivro = sessionStorage.getItem("idLivro")
+
+        fetch(`/livros/buscar-livro/${idLivro}/${idUsuario}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        }).then(async function (resposta) {
+            if (resposta.ok) {
+
+                const listaLivros = await resposta.json();
+
+                console.log(listaLivros[0].statusLivro)
+
+                input_nome.value = `${listaLivros[0].nome}`
+                input_autor.value = `${listaLivros[0].autor}`
+                input_qtdPag.value = `${listaLivros[0].numPaginas}`
+                select_genero.value = `${listaLivros[0].genero}`
+                select_tipoLeitura.value = `${listaLivros[0].statusLivro}`
+                avaliacaoLivro = `${listaLivros[0].estrelas}`
+                input_dtInicio.value = `${listaLivros[0].dtInicio}`
+                input_dtTermino.value = `${listaLivros[0].dtTermino}`
+                input_resenha.value = `${listaLivros[0].resenha}`
+
+                ler()
+            }
+            else {
+                throw "Houve um erro ao resgatar o livro!";
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
     }
 </script>

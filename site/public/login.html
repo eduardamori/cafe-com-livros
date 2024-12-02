@@ -75,6 +75,7 @@
                     sessionStorage.clear()
                     const dados = await resposta.json();
                     sessionStorage.setItem("idUsuario", dados.idUsuario);
+                    sessionStorage.setItem("nomeUsuario", dados.nome);
 
                     alert('Login autenticado com sucesso! Redirecionando para tela da dashboard...');
 

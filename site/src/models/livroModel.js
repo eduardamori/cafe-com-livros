@@ -16,7 +16,6 @@ function cadastrar(
 function cadastrarLivroUsuario(
     idUsuario, fkLivro, dtInicio, dtTermino, estrelas, statusLivro, resenha
 ) {
-
     if (dtInicio == null) {
         var instrucaoSqlLivrosUsuarios = `
             INSERT INTO livro_usuario (fkUsuario, fkLivro, statusLivro) 
@@ -177,22 +176,43 @@ function pesquisar(idUsuario, nome) {
     return database.executar(instrucaoSql);
 }
 
-function atualizar(idLivro, nome, autor, genero, qtdPaginas) {
+function atualizar(idLivro, nome, autor, genero, numPaginas) {
     var instrucaoSql = `
-        UPDATE livros set nome = '${nome}', autor = '${autor}', genero = '${genero}', numPaginas = ${qtdPaginas}
+        UPDATE livros set nome = '${nome}', autor = '${autor}', genero = '${genero}', numPaginas = ${numPaginas}
         where idLivro = ${idLivro};
     `;
     return database.executar(instrucaoSql);
 }
 
-function atualizarLivrosUsuario(idLivro, nome, autor, genero, qtdPaginas) {
-    var instrucaoSql = `
-        UPDATE livros set nome = '${nome}', autor = '${autor}', genero = '${genero}', numPaginas = ${qtdPaginas}
-        where idLivro = ${idLivro};
-    `;
+function atualizarLivrosUsuario(idUsuario, idLivro, dtInicio, dtTermino, estrelas, statusLivro, resenha) {
+    if (dtInicio == null || dtTermino == null) {
+        var instrucaoSql = `
+            UPDATE livro_usuario set estrelas = ${estrelas}, statusLivro = '${statusLivro}', resenha = '${resenha}'
+            where fkUsuario = ${idUsuario} and fkLivro = ${idLivro};
+        `;
+    } else {
+        var instrucaoSql = `
+            UPDATE livro_usuario set dtInicio = '${dtInicio}', dtTermino = '${dtTermino}', estrelas = ${estrelas}, statusLivro = '${statusLivro}', resenha = '${resenha}'
+            where fkUsuario = ${idUsuario} and fkLivro = ${idLivro};
+        `;
+    }
     return database.executar(instrucaoSql);
 }
 
+function buscar(idUsuario, idLivro) {
+    var instrucaoSql = `
+        SELECT 
+        l.idLivro, l.nome, l.autor, l.genero, l.numPaginas,
+        lu.dtInicio, lu. dtTermino, lu.estrelas, lu.statusLivro, lu.resenha
+        from livros as l 
+        join livro_usuario as lu
+        on l.idLivro = lu.fkLivro
+        join usuario as u
+        on u.IdUsuario = lu.fkUsuario
+        where u.IdUsuario = ${idUsuario} and l.idLivro = ${idLivro};
+    `;
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     cadastrar,
@@ -207,5 +227,6 @@ module.exports = {
     filtrarPorLendo,
     pesquisar,
     atualizar,
-    atualizarLivrosUsuario
+    atualizarLivrosUsuario,
+    buscar
 };

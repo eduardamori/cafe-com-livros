@@ -11,6 +11,10 @@ router.post("/cadastrar-livro-usuario", function (req, res) {
     livrosController.cadastrarLivroUsuario(req, res);
 });
 
+router.get("/buscar-livro/:idLivro/:idUsuario", function (req, res) {
+    livrosController.buscar(req, res);
+});
+
 router.get("/listar/:idUsuario", function (req, res) {
     livrosController.listarLivros(req, res);
 });
@@ -47,7 +51,7 @@ router.get("/listar/:idUsuario/pesquisar/:nome", function (req, res) {
     livrosController.pesquisar(req, res);
 });
 
-router.put("/atualizar-livro/:idLivro", function (req, res) {
+router.post("/atualizar-livro/:idLivro", function (req, res) {
     livrosController.atualizar(req, res);
 });
 

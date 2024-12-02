@@ -17,7 +17,7 @@
         <img src="https://images.vexels.com/media/users/3/329809/isolated/preview/18b2b6c1ba490d273259b8d0f8811dcb-cup-of-coffee-with-a-heart-on-it-barista.png"
             class="logo">
         <div>
-            <p>Olá, Eduarda</p>
+            <p id="nome_header"></p>
         </div>
         <a href="home.html" class="button" onclick="voltar()" id="home">Voltar para Home</a>
         <a href="#" class="button" onclick="cadastrar()" id="livros">Estante</a>
@@ -141,8 +141,14 @@
                         </select>
                     </div>
                     <div class="container_livros">
-                        <div id="div_class_livro" class="class_livro"></div>
+                        <div id="div_class_livro" class="class_livro" 
+                        style=
+                            "
+                            display: flexbox;
+                            justify-content: space-between;
+                        "></div>
                     </div>
+                    <div style="display: inline;"></div>
                 </div>
             </div>
         </div>
@@ -237,6 +243,7 @@
         }).then(async function (resposta) {
             if (resposta.ok) {
                 console.log('Livro usuario cadastrado com sucesso');
+                listarLivros()
             }
             else {
                 throw "Houve um erro ao tentar realizar o login!";
@@ -296,6 +303,7 @@
     }
 
     function listarLivros() {
+        nome_header.innerHTML = `Olá, ${sessionStorage.getItem('nomeUsuario')}`
         var idUsuario = sessionStorage.getItem("idUsuario")
 
         fetch(`/livros/listar/${idUsuario}`, {
@@ -319,14 +327,14 @@
                     if (livro.estrelas == 5) estrela = '★ ★ ★ ★ ★'
 
                     divLivro.innerHTML = `
-                        <div id="div_nome" class="livro_nome"><b>Nome: </b>${livro.nome}</div>
-                        <div id="div_autor" class="livro_autor"><b>Autor: </b>${livro.autor}</div>
-                        <div id="div_avaliacao" class="livro_avaliacao"><b>Avaliação: </b> ${estrela} </div>
-                        <div id="div_genero" class="livro_genero"><b>Gênero:</b> ${livro.genero}</div>
-                        <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
-                        <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
-                        <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
-                        <button onclick="teste()">teste</button>
+                        <div id="div_nome" class="livro_nome" style="display: inline;"><b>Nome: </b>${livro.nome}</div>
+                        <div id="div_autor" class="livro_autor" style="display: inline;"><b>Autor: </b>${livro.autor}</div>
+                        <div id="div_avaliacao" class="livro_avaliacao" style="display: inline;"><b>Avaliação: </b> ${estrela} </div>
+                        <div id="div_genero" class="livro_genero" style="display: inline;"><b>Gênero:</b> ${livro.genero}</div>
+                        <div id="div_dtInicio" class="livro_dtInicio" ><b>Dt Início:</b> ${livro.dtInicio}</div>
+                        <div id="div_dtTermino" class="livro_dtTermino" ><b>Dt Término:</b> ${livro.dtTermino}</div>
+                        <div id="div_resenha" class="livro_resenha" ><b>Resenha:</b>${livro.resenha}</div>
+                        <button onclick="atualizar(${livro.idLivro})" id="botao_atualizar">atualizar</button>
                     `;
 
                     container.appendChild(divLivro);
@@ -340,8 +348,9 @@
         });
     }
 
-    function teste() {
-        alert('cliquei no botao')
+    function atualizar(idLivro) {
+        sessionStorage.setItem("idLivro", idLivro)
+        window.location = "atualizarLivro.html";
     }
 
     function ordenar() {

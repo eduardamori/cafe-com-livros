@@ -17,7 +17,7 @@
         <img src="https://images.vexels.com/media/users/3/329809/isolated/preview/18b2b6c1ba490d273259b8d0f8811dcb-cup-of-coffee-with-a-heart-on-it-barista.png"
             class="logo">
         <div>
-            <p>Olá, Eduarda</p>
+            <p id="nome_header">Olá, </p>
         </div>
         <a href="home.html" class="button" onclick="voltar()" id="home">Voltar para Home</a>
         <a href="livros.html" class="button" onclick="cadastrar()" id="livros">Estante</a>
@@ -143,6 +143,7 @@
 <script>
 
     function carregarGraficos() {
+        nome_header.innerHTML = `Olá, ${sessionStorage.getItem('nomeUsuario')}`
         resgatarTotalLivros()
         resgatarTotalPaginas()
         resgatarTotalPaginasLidas()
@@ -220,53 +221,16 @@
                 const retornadoPeloBancoDeDados = await resposta.json();
 
                 for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
-                    if (retornadoPeloBancoDeDados[i].mes == 1 ) {
-                        mes.push("Janeiro")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 2 ) {
-                        mes.push("Fevereiro")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 3 ) {
-                        mes.push("Março")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 4 ) {
-                        mes.push("Abril")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 5 ) {
-                        mes.push("Maio")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 6 ) {
-                        mes.push("Junho")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 7 ) {
-                        mes.push("Julho")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 8 ) {
-                        mes.push("Agosto")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 9 ) {
-                        mes.push("Setembro")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 10 ) {
-                        mes.push("Outubro")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 11 ) {
-                        mes.push("Novembro")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 12 ) {
-                        mes.push("Dezembro")
-                    }
-                }
-
-                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
                     totalLivros.push(retornadoPeloBancoDeDados[i].totalLivros)
                 }
+
+                console.log(totalLivros)
 
                 const ctx = document.getElementById('livrosLidosMes_chart').getContext('2d');
                 const livrosPorMesChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: mes,
+                        labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
                         datasets: [{
                             label: 'Quantidade por Mes',
                             data: totalLivros,
@@ -305,45 +269,6 @@
                 const retornadoPeloBancoDeDados = await resposta.json();
 
                 for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
-                    if (retornadoPeloBancoDeDados[i].mes == 1 ) {
-                        mes.push("Janeiro")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 2 ) {
-                        mes.push("Fevereiro")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 3 ) {
-                        mes.push("Março")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 4 ) {
-                        mes.push("Abril")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 5 ) {
-                        mes.push("Maio")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 6 ) {
-                        mes.push("Junho")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 7 ) {
-                        mes.push("Julho")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 8 ) {
-                        mes.push("Agosto")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 9 ) {
-                        mes.push("Setembro")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 10 ) {
-                        mes.push("Outubro")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 11 ) {
-                        mes.push("Novembro")
-                    }
-                    if (retornadoPeloBancoDeDados[i].mes == 12 ) {
-                        mes.push("Dezembro")
-                    }
-                }
-
-                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
                     totalPaginas.push(retornadoPeloBancoDeDados[i].totalPaginas)
                 }
 
@@ -351,7 +276,7 @@
                 const paginasPorMesChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: mes,
+                        labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
                         datasets: [{
                             label: 'Quantidade por Mes',
                             data: totalPaginas,
