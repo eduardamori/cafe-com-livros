@@ -216,9 +216,50 @@
         }).then(async function (resposta) {
             if (resposta.ok) {
 
-                var mes = []
+                var meses = []
                 var totalLivros = []
                 const retornadoPeloBancoDeDados = await resposta.json();
+
+                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
+                    // meses.push(retornadoPeloBancoDeDados[i].meses)
+
+                    if (retornadoPeloBancoDeDados[i].mes == '1') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '2') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '3') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '4') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '5') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '6') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '7') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '8') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '9') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '10') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '11') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '12') {
+                        meses.push("Janeiro")
+                    }
+                }
 
                 for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
                     totalLivros.push(retornadoPeloBancoDeDados[i].totalLivros)
@@ -230,7 +271,7 @@
                 const livrosPorMesChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                        labels: meses,
                         datasets: [{
                             label: 'Quantidade por Mes',
                             data: totalLivros,
