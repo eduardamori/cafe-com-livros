@@ -223,9 +223,63 @@ INSERT INTO livro_usuario (fkUsuario, fkLivro, dtInicio, dtTermino, estrelas, st
         on u.IdUsuario = lu.fkUsuario
         where u.IdUsuario = 1 and l.nome like '%%';
         
-        describe livro_usuario;
+        describe usuario;
         
 select * from livro_usuario;
 
         UPDATE livro_usuario set dtInicio = '2024-11-10', dtTermino = '2024-12-01', estrelas = 4, statusLivro = 'lido', resenha = null
         where fkusuario = 1 and fkLivro = 1002;
+        
+                SELECT date_format(dtTermino, '%Y-%m') as mes,
+        count(*) as totalLivros
+        FROM livro_usuario
+        WHERE fkUsuario = 1
+        GROUP BY dtTermino, date_format(dtTermino, '%Y-%m')
+        ORDER BY mes;
+        
+SELECT l.idLivro, l.nome, l.autor, l.genero,
+lu.dtInicio, lu. dtTermino, lu.estrelas, lu.statusLivro, lu.resenha
+from livros as l 
+join livro_usuario as lu
+on l.idLivro = lu.fkLivro
+join usuario as u
+on u.IdUsuario = lu.fkUsuario
+where u.IdUsuario = 1;
+
+select * from usuario;
+select * from livro_usuario;
+select * from livro_usuario where fkLivro = 1004	;
+
+UPDATE livros l set l.nome = '${nome}', autor = '${autor}', genero = '${genero}', numPaginas = 4
+        where l.idLivro = '1049';
+        
+        
+UPDATE livro_usuario set dtInicio = '2024-05-12', dtTermino = '2024-05-12', estrelas = 4, statusLivro = 'Lendo', resenha = '${resenha}'
+        where fkUsuario = 1 and fkLivro = 1049;
+        
+SELECT date_format(dtTermino, '%m') as mes,
+count(*) as totalLivros
+FROM livro_usuario
+WHERE fkUsuario = 1 and statusLivro = 'Lido'
+GROUP BY mes
+ORDER BY mes;
+
+select * from livro_usuario where statusLivro = 'Lido';
+        
+SELECT count(distinct date_format(dtTermino, '%m')) as mes, count(*) as totalLivros FROM livro_usuario
+WHERE fkUsuario = 1
+GROUP BY mes
+ORDER BY mes;
+        
+select count(*) FROM livro_usuario where fkUsuario =1;
+
+SELECT date_format(dtTermino, '%m') as mes,
+        count(*) as totalLivros
+        FROM livro_usuario
+        WHERE fkUsuario = 1 and statusLivro = 'Lido'
+        GROUP BY mes
+        ORDER BY mes;
+        
+        
+        
+        

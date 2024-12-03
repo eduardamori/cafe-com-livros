@@ -81,7 +81,8 @@ function resgatarLivrosPorMes(idUsuario) {
         count(*) as totalLivros
         FROM livro_usuario
         WHERE fkUsuario = ${idUsuario}
-        GROUP BY dtTermino, date_format(dtTermino, '%m')
+         and statusLivro = 'Lido'
+        GROUP BY mes
         ORDER BY mes;
     `
     return database.executar(instrucaoSql)
@@ -95,7 +96,8 @@ function resgatarPaginasPorMes(idUsuario) {
         FROM livro_usuario as lu JOIN livros
         on fkLivro = idLivro
         WHERE fkUsuario = ${idUsuario}
-        GROUP BY dtTermino, date_format(dtTermino, '%m')
+        and statusLivro = 'Lido'
+        GROUP BY mes
         ORDER BY mes;
  `
     return database.executar(instrucaoSql)
