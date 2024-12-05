@@ -16,7 +16,7 @@
                     <a href="home.html">Inicio</a>
                 </li>
                 <li>
-                    <a href="minha historia*">Minha história</a>
+                    <a href="minhaHistoria.html">Minha história</a>
                 </li>
                 <li>|</li>
                 <li>
@@ -41,13 +41,13 @@
                         <input id="input_nasc" type="date" placeholder="Data de nascimento">
                     </div>
                     <div class="campo">
-                        <input id="input_email" type="text" placeholder="E-mail">
+                        <input id="input_email" type="text" placeholder="E-mail - Ex: livros@email.com">
                     </div>
                     <div class="campo">
-                        <input id="input_senha" type="password" placeholder="Senha">
+                        <input id="input_senha" type="password" placeholder="Senha - Ex: Livros@123">
                     </div>
                     <div class="campo">
-                        <input id="input_confirmarSenha" type="password" placeholder="Confirmar senha">
+                        <input id="input_confirmarSenha" type="password" placeholder="Confirmar senha - Ex: Livros@123 ">
                     </div>
 
                     <div class="input_container">
@@ -86,14 +86,29 @@
         var senha = input_senha.value;
         var confSenha = input_confirmarSenha.value;
         var generoFav = select_genero.value;
-        var possui_numero = /\d/.test(senha);
-        var possui_letra_maiuscula = /[A-Z]/.test(senha);
-        var possui_letra_minuscula = /[a-z]/.test(senha);
-        var possui_caracter_especial = /[!@#$%¨&*()]/.test(senha);
-
+        var tamanho_senha = senha.length;
+        var senha_minusculo = senha.toLowerCase();
+        var senha_maiusculo = senha.toUpperCase();
+        var possui_caracter_especial = 'nao';
+        var possui_numero = 'nao';
         var termina_com = email.endsWith('.com');
         var termina_br = email.endsWith('.br');
         var possui_arroba = email.includes('@');
+
+        for (var index = 0; index < tamanho_senha; index++) {
+            var caracter_atual = senha[index];
+            if (caracter_atual == "!" || caracter_atual == "@" || caracter_atual == "#" || caracter_atual == "$" || caracter_atual == "%" || caracter_atual == "&") {
+                possui_caracter_especial = 'sim';
+                console.log(possui_caracter_especial)
+            }
+        }
+
+        for (var index = 0; index < tamanho_senha; index++) {
+            var caracter_atual = senha[index];
+            if (caracter_atual == "1" || caracter_atual == "2" || caracter_atual == "3" || caracter_atual == "4" || caracter_atual == "5" || caracter_atual == "6" || caracter_atual == "7" || caracter_atual == "8" || caracter_atual == "9" || caracter_atual == "0") {
+                possui_numero = 'sim';
+            }
+        }
 
         if (nome == '' || dtNasc == '' || email == '' || senha == '' || confSenha == '' || generoFav == '#') {
             alert('Preencher todos os campos para prosseguir')
@@ -104,7 +119,7 @@
         else if (termina_br == false && termina_com == false || possui_arroba == false) {
             alert('Favor informar um e-mail válido')
         }
-        else if (senha.length < 6 || !possui_numero || !possui_letra_maiuscula || !possui_letra_minuscula || !possui_caracter_especial) {
+        else if (tamanho_senha < 6 || possui_numero == 'nao' || senha_maiusculo == senha || senha_minusculo == senha || possui_caracter_especial == 'nao') {
             alert('A senha deve haver ao menos 6 caracteres, um caractere maiúsculo, um minúsculo, um número e um caracter especial')
         }
         else if (senha != confSenha) {
