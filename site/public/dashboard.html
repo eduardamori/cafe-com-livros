@@ -185,7 +185,7 @@
                         datasets: [{
                             label: 'Quantidade por Livros',
                             data: totalGeneros,
-                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                            backgroundColor: ['#785641'],
                         }]
                     },
                     options: {
@@ -223,44 +223,43 @@
                 for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
                     // meses.push(retornadoPeloBancoDeDados[i].meses)
 
-                    if (retornadoPeloBancoDeDados[i].mes == '1') {
+                    if (retornadoPeloBancoDeDados[i].mes == '01') {
                         meses.push("Janeiro")
                     }
-                    if (retornadoPeloBancoDeDados[i].mes == '2') {
-                        meses.push("Janeiro")
+                    if (retornadoPeloBancoDeDados[i].mes == '02') {
+                        meses.push("Fevereiro")
                     }
-                    if (retornadoPeloBancoDeDados[i].mes == '3') {
-                        meses.push("Janeiro")
+                    if (retornadoPeloBancoDeDados[i].mes == '03') {
+                        meses.push("Março")
                     }
-                    if (retornadoPeloBancoDeDados[i].mes == '4') {
-                        meses.push("Janeiro")
+                    if (retornadoPeloBancoDeDados[i].mes == '04') {
+                        meses.push("Abril")
                     }
-                    if (retornadoPeloBancoDeDados[i].mes == '5') {
-                        meses.push("Janeiro")
+                    if (retornadoPeloBancoDeDados[i].mes == '05') {
+                        meses.push("Maio")
                     }
-                    if (retornadoPeloBancoDeDados[i].mes == '6') {
-                        meses.push("Janeiro")
+                    if (retornadoPeloBancoDeDados[i].mes == '06') {
+                        meses.push("Junho")
                     }
-                    if (retornadoPeloBancoDeDados[i].mes == '7') {
-                        meses.push("Janeiro")
+                    if (retornadoPeloBancoDeDados[i].mes == '07') {
+                        meses.push("Julho")
                     }
-                    if (retornadoPeloBancoDeDados[i].mes == '8') {
-                        meses.push("Janeiro")
+                    if (retornadoPeloBancoDeDados[i].mes == '08') {
+                        meses.push("Agosto")
                     }
-                    if (retornadoPeloBancoDeDados[i].mes == '9') {
-                        meses.push("Janeiro")
+                    if (retornadoPeloBancoDeDados[i].mes == '09') {
+                        meses.push("Setembro")
                     }
                     if (retornadoPeloBancoDeDados[i].mes == '10') {
-                        meses.push("Janeiro")
+                        meses.push("Outubro")
                     }
                     if (retornadoPeloBancoDeDados[i].mes == '11') {
-                        meses.push("Janeiro")
+                        meses.push("Novembro")
                     }
                     if (retornadoPeloBancoDeDados[i].mes == '12') {
-                        meses.push("Janeiro")
+                        meses.push("Dezembro")
                     }
                 }
-
                 for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
                     totalLivros.push(retornadoPeloBancoDeDados[i].totalLivros)
                 }
@@ -275,7 +274,7 @@
                         datasets: [{
                             label: 'Quantidade por Mes',
                             data: totalLivros,
-                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                            backgroundColor: ['#5b3c28'],
                         }]
                     },
                     options: {
@@ -305,9 +304,50 @@
         }).then(async function (resposta) {
             if (resposta.ok) {
 
-                var mes = []
+                var meses = []
                 var totalPaginas = []
                 const retornadoPeloBancoDeDados = await resposta.json();
+
+                for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
+                    // meses.push(retornadoPeloBancoDeDados[i].meses)
+
+                    if (retornadoPeloBancoDeDados[i].mes == '01') {
+                        meses.push("Janeiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '02') {
+                        meses.push("Fevereiro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '03') {
+                        meses.push("Março")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '04') {
+                        meses.push("Abril")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '05') {
+                        meses.push("Maio")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '06') {
+                        meses.push("Junho")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '07') {
+                        meses.push("Julho")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '08') {
+                        meses.push("Agosto")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '09') {
+                        meses.push("Setembro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '10') {
+                        meses.push("Outubro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '11') {
+                        meses.push("Novembro")
+                    }
+                    if (retornadoPeloBancoDeDados[i].mes == '12') {
+                        meses.push("Dezembro")
+                    }
+                }
 
                 for (let i = 0; i < retornadoPeloBancoDeDados.length; i++) {
                     totalPaginas.push(retornadoPeloBancoDeDados[i].totalPaginas)
@@ -317,11 +357,11 @@
                 const paginasPorMesChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                        labels: meses,
                         datasets: [{
                             label: 'Quantidade por Mes',
                             data: totalPaginas,
-                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                            backgroundColor: ['#5b3c28'],
                         }]
                     },
                     options: {
@@ -375,7 +415,7 @@
                         datasets: [{
                             label: 'Quantidade por Livros',
                             data: totalAutores,
-                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                            backgroundColor: ['#785641'],
                         }]
                     },
                     options: {
@@ -524,9 +564,8 @@
                     data: {
                         labels: statusLivro,
                         datasets: [{
-                            label: statusLivro,
                             data: quantidade, 
-                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                            backgroundColor: ['#97725b', '#5b3c28', '#785641'],
                         }]
                     },
                     options: {

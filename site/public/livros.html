@@ -260,6 +260,9 @@
 
         var idUsuario = sessionStorage.getItem("idUsuario")
 
+        if (nome == '') listarLivros()
+        else {
+
         fetch(`/livros/listar/${idUsuario}/pesquisar/${nome}`, {
             method: "GET",
             headers: { "Content-Type": "application/json" }
@@ -289,6 +292,7 @@
                         <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
                         <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
                         <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                        <button onclick="atualizar(${livro.idLivro})" id="botao_atualizar">atualizar</button>
                     `;
 
                     container.appendChild(divLivro);
@@ -299,7 +303,7 @@
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-        });
+        });}
     }
 
     function listarLivros() {
@@ -358,6 +362,7 @@
         const container = document.getElementById("div_class_livro");
         container.innerHTML = "";
 
+        if (filtro == '#') listarLivros()
         if (filtro == 'porDataCadastro') ordenarPorDataCadastro()
         if (filtro == 'porNomeCrescente') ordenarPorNomeCrescente()
         if (filtro == 'porNomeDecrescente') ordenarPorNomeDecrescente()
@@ -397,6 +402,7 @@
                         <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
                         <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
                         <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                        <button onclick="atualizar(${livro.idLivro})" id="botao_atualizar">atualizar</button>
                     `;
 
                     container.appendChild(divLivro);
@@ -442,6 +448,7 @@
                         <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
                         <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
                         <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                        <button onclick="atualizar(${livro.idLivro})" id="botao_atualizar">atualizar</button>
                     `;
 
                     container.appendChild(divLivro);
@@ -487,6 +494,7 @@
                         <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
                         <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
                         <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                        <button onclick="atualizar(${livro.idLivro})" id="botao_atualizar">atualizar</button>
                     `;
 
                     container.appendChild(divLivro);
@@ -532,6 +540,7 @@
                         <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
                         <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
                         <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                        <button onclick="atualizar(${livro.idLivro})" id="botao_atualizar">atualizar</button>
                     `;
 
                     container.appendChild(divLivro);
@@ -577,6 +586,7 @@
                         <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
                         <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
                         <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                        <button onclick="atualizar(${livro.idLivro})" id="botao_atualizar">atualizar</button>
                     `;
 
                     container.appendChild(divLivro);
@@ -633,6 +643,7 @@
                         <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
                         <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
                         <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                        <button onclick="atualizar(${livro.idLivro})" id="botao_atualizar">atualizar</button>
                     `;
 
                     container.appendChild(divLivro);
@@ -678,6 +689,7 @@
                         <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
                         <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
                         <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                        <button onclick="atualizar(${livro.idLivro})" id="botao_atualizar">atualizar</button>
                     `;
 
                     container.appendChild(divLivro);
@@ -723,6 +735,7 @@
                         <div id="div_dtInicio" class="livro_dtInicio"><b>Dt Início:</b> ${livro.dtInicio}</div>
                         <div id="div_dtTermino" class="livro_dtTermino"><b>Dt Término:</b> ${livro.dtTermino}</div>
                         <div id="div_resenha" class="livro_resenha"><b>Resenha:</b>${livro.resenha}</div>
+                        <button onclick="atualizar(${livro.idLivro})" id="botao_atualizar">atualizar</button>
                     `;
 
                     container.appendChild(divLivro);
