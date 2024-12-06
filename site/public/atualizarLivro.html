@@ -22,7 +22,7 @@
         <a href="home.html" class="button" onclick="voltar()" id="home">Voltar para Home</a>
         <a href="livros.html" class="button" onclick="cadastrar()" id="livros">Estante</a>
         <a href="dashboard.html" class="button" onclick="ver()" id="dash">Análise da estante</a>
-        <a href="index.html" class="button" onclick="sair()" id="saindo">Sair</a>
+        <a style="cursor: pointer;" class="button" onclick="sair()" id="saindo">Sair</a>
     </div>
 
     <div id="tela1" class="content">
@@ -119,6 +119,11 @@
 
 <script>
     var avaliacaoLivro = 0
+
+    function sair() {
+        sessionStorage.clear()
+        window.location = "login.html";
+    }
 
     function carregarInformacoes() {
         resgatarLivro()

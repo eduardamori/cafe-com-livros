@@ -22,7 +22,7 @@
         <a href="home.html" class="button" onclick="voltar()" id="home">Voltar para Home</a>
         <a href="livros.html" class="button" onclick="cadastrar()" id="livros">Estante</a>
         <a href="#" class="button" onclick="ver()" id="dash">Análise da estante</a>
-        <a href="index.html" class="button" onclick="sair()" id="saindo">Sair</a>
+        <a style="cursor: pointer;" class="button" onclick="sair()" id="saindo">Sair</a>
     </div>
 
     <div id="tela1" class="content">
@@ -62,7 +62,7 @@
             </div>
 
             <div class="chart-box duda-chart" id="livrosPorAutores_chart_box">
-                <div class="chart-title">5 Autores mais lidos</div>
+                <div class="chart-title">5 Autores mais cadastrados</div>
                 <canvas id="autoresMaisLidos_chart"></canvas>
             </div>
         </div>
@@ -141,6 +141,10 @@
 </html>
 
 <script>
+    function sair() {
+        sessionStorage.clear()
+        window.location = "login.html";
+    }
 
     function carregarGraficos() {
         nome_header.innerHTML = `Olá, ${sessionStorage.getItem('nomeUsuario')}`

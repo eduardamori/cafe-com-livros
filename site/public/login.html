@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/login.css">
 </head>
 
-<body>
+<body onload="validarSessao()">
     <div class="header">
         <div class="container">
             <ul class="navbar">
@@ -54,6 +54,14 @@
 </html>
 
 <script>
+    function validarSessao() {
+        if (sessionStorage.getItem('idUsuario') != undefined) {
+            setTimeout(() => {
+                window.location = "dashboard.html";
+            }, "300");
+        }
+    }
+
     function entrar() {
         var email = input_email.value
         var senha = input_senha.value
@@ -81,7 +89,7 @@
 
                     setTimeout(() => {
                         window.location = "dashboard.html";
-                    }, "2000");
+                    }, "1000");
                 }
                 else {
                     throw "Houve um erro ao tentar realizar o login!";
